@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>Le PHP - introduction</title>
+    <title>Le PHP -introduction </title>
 </head>
 
 <body>
@@ -17,86 +17,122 @@
     <div class="p-5 bg-light">
         <div class="container">
             <h1 class="display-3">Introduction au PHP</h1>
-            <p class="lead">PHP (officiellement, ce sigle est un accronume récursif pr PHP Hypert Preposs</p>
+            <p class="lead"> PHP (officiellement le signe est un acronyme récursif pour PHP Hypertext processor) est un langage de scripts généralistes et open Source, spécialement conçu pour le développemnt d'application WEB.</p>
         </div>
     </div>
-    <div class="container">
+
+    <main class="container">
+
         <section class="row">
+
             <div class="col-12 col-md-6">
-                <h2 class="text-center">1- A quoi sert le PHP sert à déveloper des app web...</h2>
-                <p>Comme ns l'avons vu dans le texte d'introduction, le PHP sert à deevelopper des app web.Grâce à ce langage...</p>
-                <p>Nous pourrons mtnant grâce au PHP, créer tous les types de sites que ns souhaitons : moteur de
-                </p>
-            </div>
-            <!-- fin de la colonnne -->
-            <div class="col-12 col-md-6">
-                <figure class="text-center">
-                    <img src="" alt="" class="img-fluid">
-                    <figcaption>Logo PHP</figcaption>
+
+                <h2 class="text-center">1- Aquoi sert le PHP</h2>
+                <P>Comme nous l'avons dans le texte d'introduction, le PHP sert à développer des applications Web.Grâce à ce langage, nous pouvons faire tout type de site car il n'y a plus de limite.En effet, le PHP est un langage fonctionnel à l'inverse
+                    du HTML et du CSS.</P>
+
+                <p> Nous pourrons maintenant grâce au PHP, créer tous les types de sites que nous souhaitons:moteur de recherche de type Google, réseaux sociaux comme Facebook, des plateformes multimedias comme Youtube, ou encore des sites d'informations
+                    comme wikipédia. Mais son utilisation ne se limite pas à ça car nous pourrons aussi développer des sites de e-commerce, des espaces membres, des pages d'administation etc. </p>
+
+                <figure class="tex-center">
+                    <img src="image/1-logo.jpg" alt="Logo PHP" class="image-fluid">
+                    <figcaption> Logo PHP</figcaption>
                 </figure>
-                <p>Pr mieux comprendre le PHP va êre l'emément qui permet ce que l'on à créer grâce aux atrez langages de fontionner. Si on prend l'exemple d'un formulaire : on le le déclare en HTML, on le style grâce ...</p>
+
+                <P>Pour mieux comprendre le PHP va être l'élément qui permet à ce que l'on a créé grâce aux autres langages de fonctionner. Si on prend l'exemple d'un formulaire : on le déclare en HTML , on le style grâce au CSS ou à un framework de type
+                    Boostrap.Si nous voulons récupérer les données qui se trouvent dans le formulaire nous devrons utiliser le PHP qui va permettre de traîter les données.</P>
+
             </div>
-            <!-- fin de la colonnne -->
+            <!-- FIN DE LA COLONNE -->
 
             <div class="col-12 col-md-6">
-                <h2 class="text-center">2 - Site dynamique</h2>
-                <p>Le PHP ns sert en fait à créer un site web dynamique...</p>
-                <p class="alert alert-danger">Attention, il ne faut ps confondre un site web dynamique avex un site de mouvement...</p>
 
-                <div class="alert alert-secondary">
-                    <p>Ns utiliserons à partire de mtnant..</p>
+                <h2 class="text-center">2- Site dynamique </h2>
+
+                <p>Le PHP nous sert en fait à crééer un site web dynamique . Un site web dynamique va être un site dont les infos proviennent s'une BDD et pour cela, on va apprendre à faire fonctionner le PHP et le SQL ensemble. </p>
+
+                <p class="alert alert- danger "> Attention, il ne faut pas confondre un site WEB DYNAMQUE avec un site de mouvement et d'animations en couleur cliquable résalisable grâce au JS.</p>
+                <div class="alert alert secondary ">
+
+                    <p>Nous utiliserons à partir de maintement l'appellation de <em>Site dynamique</em> pour les sites sont les infos sont enregistrés dans une BDD et qui possède deux interfaces : </p>
+
                     <ol>
-                        <li>Une interface pr le front où on retrouvera ...</li>
-                        <li>Une interface pr le back qui ns permetra d'assurer la gestion de notre base de données et les réglages du front => on l'appellera le back office ou la page d'administration</li>
+
+                        <li>Une interface pour le front ou on retrouvera l'affichage du site "normal", le côté pour les utilisateurs et les clients</li>
+                        <li>Une interface pour le back qui nous permettra d'assurer la gestion de notre base de données et les réglages du front => on l'appellera le back office ou la page d'administration .</li>
+
                     </ol>
                 </div>
-                <div>
-                    <figure class="text-center">
-                        <img src="" alt="shéma site dynamique" class="img-fluid">
-                        <figcaption>Logo PHP</figcaption>
-                    </figure>
-                </div>
-            </div>
-            <!-- fin de la colonnne -->
-            <div class="col-12">
-                <h2 class="text-center">3- ...</h2>
-                <p> Vs ne verrer jamais de code en PHP ds le code source d'une page car ce dernier... placés ds le dossier WWW ds Laragon. Il existe 2 manières...</p>
-                <ul>
-                    <li>Depuis Laragon -> WWW -> le dossier conserné</li>
-                    <li>Depuis le navigateur -> localhost/nomdudossier</li>
-                </ul>
-                <div class="alert alert-success">
-                    <h3 class="alert-heading">Bon à savoir</h3>
-                    <ul>
-                        <li>PHP</li>
-                        <li>PHP</li>
-                        <li>PHP</li>
-                    </ul>
 
-                </div>
-                <p>Un site dynamique n'utilise pas...</p>
+                <figure class="tex-center">
+                    <img src="image/2-shema.png" alt="Schéma site dynamique" class="image-fluid">
+                    <figcaption> Site dynamique</figcaption>
+                </figure>
             </div>
+            <!-- Fin de la colonne -->
+
+            <div class="col-12">
+
+                <h2 class="tex-center"> 3-Notions importantes</h2>
+
+                <p> Vous ne verrez jamais de code en PHP dans le code source d'une page car ce dernier est interprété pour ne renvoyer que du HTML au navigateur de l'utilisateur . C'est la raison pour laquelle les fichiers ne sont plus lancés comme auparavant
+                    depuis l'explorateur ou depuis VSC et qui doivent tous être placés dans le dossier www dans Laragon .Il existe deux manières d'ouvrir le fichier sur lequel on travail: </p>
+
+                <ul>
+                    <li>Depuis Laragon =>menu => WWW le dossier concerné </li>
+                    <li>Depuis le navigateur => localhost/nomdudossier</li>
+
+                    <div class="alert alert-success">
+
+                        <h3 class="alert-heading"> Bon à savoir</h3>
+
+                        <li>PHP est un langage exécuté côté serveur</li>
+                        <li>PHP est un langage interprété</li>
+                        <li>PHP est open source, tout le monde peut l'utiliser et même vendre ses créations PHP</li>
+
+                    </div>
+                </ul>
+                <P>Un site dynamique n'utilise pas qu'un seul langage. Il faut marier le HTML, le CSS et le SQL ( JS etc.)</P>
+
+            </div>
+            <!-- fin de la colonne 1-->
         </section>
+        <!-- fin de la section -->
+
         <section class="row">
+
             <div class="col-12">
-                <h2 class="text-center">4- Serveur</h2>
-                <p>Un serveur est généralement un ordinationteur qui héberge un site mis à disposition par un hébergeur. Cet ordinateur rest tjrs....</p>
 
-                <p>Il esiste des</p>
+                <h2 class="text-center"> 4- Serveur et différences entre PHP procédural et orienté objet</h2>
+
+                <p>Un serveur est généralement un ordinateur qui héberge un site mis à disposition par un hébergeur. Cet ordinateur reste toujours allumé pour que le site soit consultable 7j/7 et 24h/24.</p>
+
+                <p>Il existe deux technique de développement avec le PHP :</p>
+
                 <ul>
-                    <li>L'approche procédurale où</li>
-                    <li>L'approche orienté objet : le code est alors encapsulé ds des méthodes de classe et fonctionne grâce....</li>
-                    <p>Certaines méthodes de base doient être forcement apprises grâce ....</p>
-                    <p>Certaines grandes entrepripes préfère tout de même trav..... </p>
-                    <p>Ces 2 méthodes peuvent être utilisées pr développer un site "from scrach" (de zéro), ds un CMS ou encore ds un framework (Symfony utilise naturellement l'orienté objet cependant il est possible de faire du procédural dedant).</p>
+                    <li>L'approche procédurale ou le code va être écrit de façon séquentielle.</li>
+
+                    <li>L'approche orienté objet : Le code est alors encapsulé dans des méthodes de classe et fonctionne grâce à l'interaction d'objet. </li>
                 </ul>
+                <p> Certaines méthodes de base doivent être forcément apprises grâce au procédural . Il n'est pas possible d'aller ' plus loin' grâce à l'orienté objet . Ce sont en fait deux méthodologies différentes mais qui permettent de faire la même chose.</p>
+
+                <p>Certianes grandes entreprises préfèrent travailler avec l'approche orientée objet car elle encourage le travail de groupe et facilite les mises à jour sur des travaux longue durée.</p>
+
+                <p> Ces deux méthodes peuvent être utilisées pour développer un site "FROM SCRATCH" ( de zéro), dans un CMS(comme Wordpress, wix) ou encore dans un Framework (Symfony utilise naturellement l'orienté objet cependant il est possible de faire
+                    du procédural dedans).</p>
+
             </div>
+            <!-- fin de la colonne -->
+
         </section>
-    </div>
+        <!-- fin de la rangée 2 -->
 
+    </main>
+    <!-- fin du main -->
 
-    <!-- Bootstrap JS -->
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
 </body>
 
