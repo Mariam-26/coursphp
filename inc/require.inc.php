@@ -1,0 +1,1 @@
+<p>require() est une fonction PHP qui permet de focer l'insertion d'un fichier. Il fonction de la mm méthode que <code>include()</code>et <code>include_once</code>, en passant le chemin du fichier en paramètre.</p>
