@@ -74,7 +74,8 @@
                 ?>
 
                 <p>Faire un formulaire danslequel on récupère le prix d'un objet: si le prix est supérieur à 100 € => remise de 10% si le prix est inférieur à 100€ , remise de 5% puis donner le prix net.</p>
-<!-- 
+                
+
                 
 <form action="#" method="GET">
 
@@ -83,9 +84,48 @@
 <input type="text" name="prix" id="prix" class="form-control">
 <input type="submit" name="submit" class="btn btn-success mt-1">
 
-</form> -->
+</form>
 
 
 <h2 class="text-center"> Mini exo 4</h2>
 
 <p>Si vous achetez un PC à plus de 1000 € dans la boutique de Hols la remise de 15% pour un mac de  moins de 1000€ la remise est de 10%. Si vous aveztez un livre , la remise est de 5% pour tous les autres articles, peu importe l'obejet , la remise est de 2% </p>
+
+</div>
+                </section>
+                </main>
+
+<form action="#" method="GET">
+<label for="objet">Objet achété</label>
+<input type="text" name="objet" placeholder="mac, livre ou autre" id="objet">
+<label for="prix">Prix de l'objet</label>
+<input type="text" name="prix" id="prix" placeholder="prix de l'objet">
+<input type="submit" class="btn btn-success">
+</form>
+
+<?php 
+// On verifie si le formulaire est soumis
+if(isset($_GET['submit'])) {
+    // On récupepère les données du formulaire ds des variables
+    $objet = $_GET['objet'];
+    $prix = $_GET['prix'];
+    // pr la emise le calcul est le précedant : on remplace 10 par le % que l'on veut obtenir
+    $pf15 = 0.85 * $prix;
+    $pf10 = 0.9 * $prix;
+    $pf5 = 0.95 * $prix;
+    $pf2 = 0.98 * $prix;
+
+    if ($objet == 'mac') {
+        if ($prix > 1000) {/* ds mac si prix supérieur à 100€ => de 15% */
+            echo "<p>Vs avez acheté un $objet dt la valeur est de $prix €, vs bénéficiez d'une remise de 15%, le prix final est donc de $pf15 €.</p>";
+        }else {
+            echo "<p>Vs avez acheté un $objet dt la valeur est de $prix €, vs bénéficiez d'une remise de 10%, le prix final est donc de $pf10 €.</p>";
+        }
+    }elseif($objet == 'livre'){
+        echo "<p>Vs avez acheté un $objet dt la valeur est de $prix €, vs bénéficiez d'une remise de 10%, le prix final est donc de $pf5 €.</p>";
+    }else { /* autre => 2% */
+        echo "<p>Vs avez acheté un $objet dt la valeur est de $prix €, vs bénéficiez d'une remise de 2%, le prix final est donc de $pf2 €.</p>";
+    }
+}
+?>
+
