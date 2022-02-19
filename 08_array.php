@@ -117,6 +117,14 @@ $tabmulti = [
   1 => [
     'prenom' => 'Alou',
     'nom' => 'Coulibaly',
+    "coleur" => 'Noire'],
+  2 => [
+    'prenom' => 'Emanuel',
+    'nom' => 'Macron',
+    "coleur" => 'Blanche'],
+  3 => [
+    'prenom' => 'Malimata',
+    'nom' => 'Wattara',
     "coleur" => 'Noire']
   ];
 
