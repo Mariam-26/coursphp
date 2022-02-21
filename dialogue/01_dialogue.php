@@ -71,28 +71,33 @@
             </div>
 
             <?php 
-             $requete = $pdoDialogue ->query ( "SELECT * FROM commentaire"); /* Ici je rentre ma requette Ds la variable $requete => je fs ma requete en SQL grâce à la fonction query(). Cette dernière dt automatiquemment s'appuyer sr ma variable ds laquelle j'ai placé les infos de connection. */
+             $requete = $pdoDialogue->query( "SELECT * FROM commentaire"); /* Ici je rentre ma requette Ds la variable $requete => je fs ma requete en SQL grâce à la fonction query(). Cette dernière dt automatiquemment s'appuyer sr ma variable ds laquelle j'ai placé les infos de connection. */
              jeprint_r($requete); /* pr débug grâce à mon jeprint_r */
-             $ligne = $requete->fetch(PDO:: FETCH_ASSOC);
+            //  $ligne = $requete->fetch(PDO:: FETCH_ASSOC);
             //  jeprint_r($ligne); 
-            echo '
+            echo "
             <table class=\"table table-striped\">
             <thead>
             <tr>
             <th>ID</th>
             <th>Pseudo</th>
             <th>Message</th>
+            <th>date d'enregistrement</th>
             </tr>
             </thead>
             <tbody>
                        
-            ';
+            ";
             // ici je fs echo de mon tableau en PHP => j'ai l'ouverture ainsi que le thead de mon tableau
             while($ligne = $requete->fetch(PDO:: FETCH_ASSOC)){ /* Grâce à la la boucle while (tant que) j'exécute le bloc de code TANT QUE j'ai ds enregistrements qui correspondant à ma requête */
               echo "<tr>";
               echo "<td>". $ligne['id_commentaire'] . "</td>";/* je boucle l'id_commantaire */
+              
               echo "<td>". $ligne['pseudo'] . "</td>";
               echo "<td>". $ligne['message'] . "</td>";
+              echo "<td>". date('d/m/y - H:i:s', strtotime($ligne['date_enreregistrement'])). "</td>"; /* je boucle le message => ad on affiche la date ss la modification elle vient comme elle est ds PHP, en anglais. On utile donc la fonction prédéfinie date() afin de modifier son format,  */
+              
+              
               echo "</tr>";
             }
             echo "
@@ -100,6 +105,28 @@
             </table>
             "           
             ?>
+            
+            <p>Rajoutez une colonne à votre tableau avec la notion de date  d'enregistrement. Attention ,pensez bien à regarder sr la doc de PHP PR LE FORMAT DATE:HEURE !</p>
+
+            <p>Affichez la liste de ttes ls prs qui on écrit ds commentaires, ainsi que la date à laquelle le commentaire a été écit ds une ol.</p>
+
+              
+            </div>
+            <div class="col-12">
+              <p>Ecercice : afficher ts ls commentaire ds un tableau avec l'id ds une colonne,  le speudo ds une autre colonne et enfin le message ds la dernière colonne. Avec la boucle while</p>
+            <?php 
+            $requete = $pdoDialogue ->query ( "SELECT pseudo, date_enreregistrement FROM commentaire");
+
+            echo "<ol>"; 
+
+            while($ligne=$requete->fetch(PDO::FETCH_ASSOC)) {
+              echo "<li>" . $ligne['pseudo'] . " " . date('d/m/y', strtotime($ligne['date_enreregistrement'])). "</li>";
+            }
+            echo "</ol>";
+              ?>
+            </div>
+
+            
 
         </section>
       </div>
