@@ -95,7 +95,7 @@
               
               echo "<td>". $ligne['pseudo'] . "</td>";
               echo "<td>". $ligne['message'] . "</td>";
-              echo "<td>". date('d/m/y - H:i:s', strtotime($ligne['date_enreregistrement'])). "</td>"; /* je boucle le message => ad on affiche la date ss la modification elle vient comme elle est ds PHP, en anglais. On utile donc la fonction prédéfinie date() afin de modifier son format,  */
+              echo "<td>". date('d/m/y - H:i:s', strtotime($ligne['date_enregistrement'])). "</td>"; /* je boucle le message => ad on affiche la date ss la modification elle vient comme elle est ds PHP, en anglais. On utile donc la fonction prédéfinie date() afin de modifier son format,  */
               
               
               echo "</tr>";
@@ -109,25 +109,34 @@
             <p>Rajoutez une colonne à votre tableau avec la notion de date  d'enregistrement. Attention ,pensez bien à regarder sr la doc de PHP PR LE FORMAT DATE:HEURE !</p>
 
             <p>Affichez la liste de ttes ls prs qui on écrit ds commentaires, ainsi que la date à laquelle le commentaire a été écit ds une ol.</p>
-
               
             </div>
             <div class="col-12">
               <p>Ecercice : afficher ts ls commentaire ds un tableau avec l'id ds une colonne,  le speudo ds une autre colonne et enfin le message ds la dernière colonne. Avec la boucle while</p>
             <?php 
-            $requete = $pdoDialogue ->query ( "SELECT pseudo, date_enreregistrement FROM commentaire");
+            $requete = $pdoDialogue ->query ( "SELECT pseudo, date_enregistrement FROM commentaire");
 
             echo "<ol>"; 
 
             while($ligne=$requete->fetch(PDO::FETCH_ASSOC)) {
-              echo "<li>" . $ligne['pseudo'] . " " . date('d/m/y', strtotime($ligne['date_enreregistrement'])). "</li>";
+              echo "<li>" . $ligne['pseudo'] . " " . date('d/m/y', strtotime($ligne['date_enregistrement'])). "</li>";
             }
             echo "</ol>";
               ?>
+
+              <p>Comtez le nbr d'enregistrements dans une table.</p>
+
+              <?php 
+              $requete = $pdoDialogue ->query ( "SELECT * FROM commentaire "); /* je selection ts ls éléments qui se trouve ds une table commentaire */
+
+              $nbrCommentaire = $requete->rowCount(); /* je compte le nombre de rangées renvoyées par ma requête. */
+
+              echo "<p>Il ya $nbrCommentaire commentaire dans la table;</p>"
+              // grâce à la fonction prédéfinie rowCount on va pouvoir cmpter le nbr d'enregistrement qui correspont à ntre requête et ain vérifier que le navigateur écupère bien ttes ls données
+              ?>
+
+              
             </div>
-
-            
-
         </section>
       </div>
 
