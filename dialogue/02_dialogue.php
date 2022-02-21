@@ -91,8 +91,7 @@
       
       while($ligne = $requete->fetch(PDO:: FETCH_ASSOC)){ 
         echo "<tr>";
-        echo "<td>". $ligne['id_commentaire'] . "</td>";
-        
+        echo "<td>". $ligne['id_commentaire'] . "</td>";       
         echo "<td>". $ligne['pseudo'] . "</td>";
         echo "<td>". $ligne['message'] . "</td>";
         echo "<td>". date('d/m/y - H:i:s', strtotime($ligne['date_enregistrement'])). "</td>"; 
@@ -103,7 +102,8 @@
       echo "
       </tbody>
       </table>
-      "           
+      "  
+      // Réception des informations d'un employé avec $_GET 
       ?>
 
     </main>
