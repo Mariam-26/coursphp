@@ -13,8 +13,8 @@
 
     <title> Le PHP - Connection à une BDD </title>
 </head>
-
 <body>
+
 <?php
    $pdoDialogue = new PDO( /* PDO est un objet qui représente la connexion entre une page en PHP et une BDD */
       'mysql:host=localhost;
@@ -28,19 +28,14 @@
    );
    ?>
 
-
     <div class="p-5 bg-light">
         <div class="container">
             <h1 class="display-3">Connecxionà la BDD dialogue</h1>
-            <p>Ds cette page, ns allons ns connecter à la BDD et créer un formulaire qui, gr^ce à la superglobale$_POST envera les infos en BDD.</p>
-            
-            
+            <p>Ds cette page, ns allons ns connecter à la BDD et créer un formulaire qui, gr^ce à la superglobale$_POST envera les infos en BDD.</p> 
           </div>
         </div><!-- fin de jumbotron -->
         
-        
-        
-        <main class="container">
+       <main class="container">
           
           <div class="col-12">
           <section class="row">
@@ -50,46 +45,70 @@
               <li>id_commentaire INT PK AT</li>
               <li>pseudo VARCHAR(255)</li>
               <li>message TEXT</li>
-              <li></li>
+              <li>date_enregistrement DATETIME</li>
             </ul>
 
             <div class="col-12 col-md-6">
               <h2>Exercice</h2>
               <p>Afficher le commentaire là ou le pseudo correspond à Thimotée </p>
               
-              <?php 
-             $requete = $pdoDialogue ->query ( "SELECT * FROM commentaire WHERE pseudo='Thimothée'"); /* Ds la variable $requete => je fs ma requete en SQL grâce à la fonction query(). Cette dernière dt automatiquemment s'appuyer sr ma variable ds laquelle j'ai placé les infos de connection. */
+            <?php 
+             $requete = $pdoDialogue ->query ( "SELECT * FROM commentaire WHERE pseudo='Thimotée'"); /* Ds la variable $requete => je fs ma requete en SQL grâce à la fonction query(). Cette dernière dt automatiquemment s'appuyer sr ma variable ds laquelle j'ai placé les infos de connection. */
              jeprint_r($requete); /* pr débug grâce à mon jeprint_r */
              $ligne = $requete->fetch(PDO:: FETCH_ASSOC);
             //  jeprint_r($ligne); 
-            echo '<ul> 
+            echo '<ol> 
 
             <li>Id :  '.$ligne['id_commentaire'].'</li>
             <li>Pseudo :  '.$ligne['pseudo'].'</li>
             <li>Message:  '.$ligne['message'].'</li>
-            
-            
-            </ul>'
+            </ol>'
               ?>
               
             </div>
+            <div class="col-12">
+              <p>Ecercice : afficher ts ls commentaire ds un tableau avec l'id ds une colonne,  le speudo ds une autre colonne et enfin le message ds la dernière colonne. Avec la boucle while</p>
+            </div>
 
-        
-        
+            <?php 
+             $requete = $pdoDialogue ->query ( "SELECT * FROM commentaire"); /* Ici je rentre ma requette Ds la variable $requete => je fs ma requete en SQL grâce à la fonction query(). Cette dernière dt automatiquemment s'appuyer sr ma variable ds laquelle j'ai placé les infos de connection. */
+             jeprint_r($requete); /* pr débug grâce à mon jeprint_r */
+             $ligne = $requete->fetch(PDO:: FETCH_ASSOC);
+            //  jeprint_r($ligne); 
+            echo '
+            <table class=\"table table-striped\">
+            <thead>
+            <tr>
+            <th>ID</th>
+            <th>Pseudo</th>
+            <th>Message</th>
+            </tr>
+            </thead>
+            <tbody>
+                       
+            ';
+            // ici je fs echo de mon tableau en PHP => j'ai l'ouverture ainsi que le thead de mon tableau
+            while($ligne = $requete->fetch(PDO:: FETCH_ASSOC)){ /* Grâce à la la boucle while (tant que) j'exécute le bloc de code TANT QUE j'ai ds enregistrements qui correspondant à ma requête */
+              echo "<tr>";
+              echo "<td>". $ligne['id_commentaire'] . "</td>";/* je boucle l'id_commantaire */
+              echo "<td>". $ligne['pseudo'] . "</td>";
+              echo "<td>". $ligne['message'] . "</td>";
+              echo "</tr>";
+            }
+            echo "
+            </tbody>
+            </table>
+            "           
+            ?>
+
         </section>
       </div>
 
     </main>
 
-
     <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
 </body>
 
 </html>
