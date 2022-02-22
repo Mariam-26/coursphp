@@ -25,7 +25,7 @@
          PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
          PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
       )/* Ici, on précise comment on veut que les erreurs soient gérées et le jeu de caractères utilisé */
-   );
+      );
    ?>
 
     <div class="p-5 bg-light">
@@ -46,24 +46,72 @@
               ':id_commentaire' => $_GET['id_commentaire'] /* on associe id_commentaire à l'id récupéré ds le lien de la page */
             ));
             if ($resultat ->rowCount() == 0) {/* si l'id_commentaire n'existe pas ds la BDD alors je renvoie vers une autre page */
-              header('location:02-dialogue.php'); /* on redirige vers la page de départ */ 
+              header('location:02_dialogue.php'); /* on redirige vers la page de départ */ 
               exit(); /* on arrête le script car il ne correspond à rien */
-              $fiche = $resultat->fetch(PDO::FETCH_ASSOC);
-            }else { /* si j'arrive sur la page sans rien dans l'URL */
-              header('location:02-dialogue.php'); 
-              exit();
             }
-          }
-
-          
+            $fiche = $resultat->fetch(PDO::FETCH_ASSOC);
+            }else { /* si j'arrive sur la page sans rien dans l'URL */
+              header('location:02_dialogue.php'); 
+              exit();
+            }          
           ?>
       </div>
 
-      <div class="col-12 col-md-6">
-        <p></p>
+      <div class="row col-12">
 
-      </div>
+      <div class="col-12 col-md-6">   
+      <div class="card">
+          <div class="card-header">
+            ID du commentaire : <?php echo $fiche['id_commentaire']; ?>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Pseudo : <?php echo $fiche['pseudo']; ?></h4>
+            <p class="card-text">Message : <?php echo $fiche['message']; ?></p>
+          </div>
+          <div class="card-footer text-muted">
+            Date d'enregistrement ou de mise à jour : <?php echo $fiche['date_enregistrement']; ?>
+          </div>
+        </div>
+        </div>
+        </div>
 
+
+        <div class="col-12 col-md-6">
+          <h2>Mise à jour du commentaire</h2>
+          <form action="#" method="POST">
+            <div class="mb-3">
+              <label for="pseudo">Pseudo</label>
+              <input type="text" name="pseudo" id="pseudo" class="form-control" value="<?php echo $fiche['pseudo']; ?>">
+            </div>
+
+            <div class="mb-3">
+              <label for="message">Message</label>
+              <input type="text" name="message" id="message" class="form-control" value="<?php echo $fiche['message']; ?>">
+            </div>
+
+            <button type="submit" name="submit" class="btn btn-primary">
+            Mettre à jour
+            </button>
+          </form>
+
+          <?php 
+          // 
+          if(!empty($_POST)){/* Je vérifie que mon formulaire n'est ps vide (not empty) */
+            $_POST['pseudo'] = htmlspecialchars($_POST['pseudo']);
+            $_POST['message'] = htmlspecialchars($_POST['message']); /* grâce à ces instructions. je vérifie qu'on ne m'injecte ps de SQL ou du JS et j'évite les failles */
+
+            $resultat = $pdoDialogue->prepare("UPDATE commentaire SET pseudo = :pseudo, message = :message WHERE id_commentaire = :id_commentaire");
+
+            $resultat->execute(array(
+              ':id_commentaire' => $_GET['id_commentaire'],
+              ':pseudo' => $_POST['pseudo'],
+              ':message' => $_POST['message']
+            ));
+            header('location:02_dialogue.php');
+            exit();
+          }
+          ?>
+        </div>
     </main>
 
     <!-- Bootstrap -->
