@@ -1,5 +1,3 @@
-<?php require_once '../entreprise/includes/header_entreprise.php'; ?>
-
 <!doctype html>
 <html lang="fr">
   <head>
@@ -10,18 +8,56 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <!-- Logo du site -->
-    <link rel="sortcut-icon" href="../entreprise/img/1-logo.jpg">
+  <!-- Logo du site -->
+  <link rel="shortcut icon" href="../entreprise/img/1-logo.jpg">
   
   <!-- Ma feuille de styles -->
   <link rel="stylesheet" href="../entreprise/css/entreprise.css">
 
     <title>Les salariés</title>
   </head>
-  <body>
+  <body id="accueil">
 
-  <main>
-    <h1>Les salariés</h1>
+  <!-- HEADER -->
+  <header>
+   <div class="row col-12">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+        <!-- NAV -->
+        <nav class="navbar navbar-expand-lg p-5">
+        <div class="container-fluid ">
+          <a class="navbar-brand entreprise" href="#">Entreprise</a>
+          <button class="navbar-toggler text-end" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav m-auto">
+              </li> <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="01-entreprise.php">Entreprise - 1</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="02-entreprise.php">Entreprise - 2</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="03-entreprise.php">Entreprise - 3</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="#contact">Contact</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        </nav>
+        <!-- FIN NAV --> 
+      </div>
+   </div class="row col-12"> 
+</header>
+<!-- FIN HEADER -->
+
+<!-- MAIN -->
+<main class="container">
+    <div class="row col-12">
+      <div class="n col-lg-12 col-md-12 col-sm-12">
+    <h1 class="P p-5 text-center">Les salariés</h1>
     
     <?php 
      
@@ -35,9 +71,7 @@
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
          )
       );
-      
-
-
+    
        $requete = $pdoEntreprise->query( "SELECT * FROM employes"); 
       
       echo "
@@ -53,8 +87,7 @@
       <th>Date_embauche</th>
       </tr>
       </thead>
-      <tbody>
-                 
+      <tbody>                 
       ";
       
       while($ligne = $requete->fetch(PDO:: FETCH_ASSOC)){ 
@@ -81,8 +114,6 @@
       // Réception des informations d'un employé avec $_GET 
 
       ?>
-
-
 
 <div class="col-12 col-md-6 m-auto">
           <form action="#" method="POST" class="border p-2 my-5">
@@ -123,7 +154,6 @@
             
             /* grâce à cette instruction, je me premunie des failles et des injections SQL */
 
-
             $insertion = $pdoEntreprise->prepare("INSERT INTO employes(prenom, nom, sexe, service, date_embauche, salaire) VALUES (:prenom, :nom, :sexe, :service, NOW(), :salaire)"); /* pr la date d'enregistrement, ds ls valeurs ns précisons NOW() qui va permettre de récupére la sate de jour, ls autres  valeurs st récisées par la suite ds le execute */
             $insertion->execute(array(
               ':prenom'=>$_POST['prenom'],
@@ -136,10 +166,20 @@
           }
           ?>
       </div>
+      </div>
+      </div>
   </main>
-    
+  <!-- FIN MAIN -->
 
+  <!-- FOOTER -->
+<footer id="contact" class="mt-5">
+  <div class="container-flui p-5 ">
+    <?php echo '<p class="t-center">Exo - PHP</p>'; ?>
+    <p>&copy; Colombbus - Paris 2022</p>
     
+  </div>
+</footer>
+<!-- FIN FOOTER -->
 
     <!-- Bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

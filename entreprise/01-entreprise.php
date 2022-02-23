@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Logo du site -->
-    <link rel="sortcut-icon" href="../entreprise/img/1-logo.jpg">
+    <link rel="sortcut icon" href="../entreprise/img/1-logo.jpg">
   
   <!-- Ma feuille de styles -->
   <link rel="stylesheet" href="../entreprise/css/entreprise.css">
@@ -31,8 +31,6 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav m-auto">
-              <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#accueil">Accueil</a>
               </li> <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="01-entreprise.php">Entreprise - 1</a>
               </li>
@@ -55,7 +53,7 @@
 </header>
 <!-- FIN HEADER -->
 
-
+<!-- MAIN -->
   <main class="container">
     <div class="row col-12">
       <div class="n col-lg-12 col-md-12 col-sm-12">
@@ -64,7 +62,6 @@
         Non quis aut earum maxime eos? Magnam ut necessitatibus saepe unde consequuntur voluptas quibusdam architecto ducimus earum dolor autem sit, odio eum officia, sed adipisci hic praesentium. Culpa, iusto atque.
         Voluptates qui quaerat, tempora a animi laboriosam sint maiores at delectus sequi dolore! Inventore, praesentium! Inventore, voluptate illum fugit eos distinctio suscipit repellat nihil fugiat rem tenetur minus ipsum dicta?
         Quas reprehenderit totam similique veniam, doloremque illum explicabo necessitatibus quidem nulla voluptate blanditiis commodi? Esse iure facilis ratione debitis voluptatibus, dignissimos vero, qui est sit aliquid modi fugiat? Culpa, voluptatum!</p>
-        
         
         <?php 
          
@@ -78,8 +75,6 @@
                 PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
              )
           );
-          
-        
         
            $requete = $pdoEntreprise->query( "SELECT * FROM employes WHERE service='direction'"); 
           
@@ -96,8 +91,7 @@
           <th>Salaire</th>
           </tr>
           </thead>
-          <tbody>
-                     
+          <tbody>                    
           ";
           
           while($ligne = $requete->fetch(PDO:: FETCH_ASSOC)){ 

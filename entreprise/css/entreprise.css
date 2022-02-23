@@ -1,28 +1,49 @@
-/* style général */
+/* STYLES */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    transition: all ease-in-out 0.5s;
+}
+
+body {
+    background: rgba(0, 0, 0, 0.08) !important;
+}
 
 header {
     margin: auto;
     background-color: #040404;
-    color: ivory;
     height: 25vh;
 }
 
 nav ul a {
     font-size: 1.2rem;
     margin-right: 20px;
-    color: ivory !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    text-transform: uppercase;
+}
+
+nav ul a:hover {
+    color: cyan !important;
 }
 
 .entreprise {
+    text-transform: uppercase;
     font-size: 2rem !important;
+    font-weight: bold;
     margin-right: 350px !important;
-    color: ivory !important;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.entreprise:hover {
+    color: cyan;
 }
 
 footer {
     margin: auto !important;
     text-align: center !important;
     background-color: #040404;
-    color: ivory;
+    color: rgba(255, 255, 255, 0.7);
     height: 25vh;
 }
