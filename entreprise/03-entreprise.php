@@ -1,3 +1,5 @@
+<?php require_once '../entreprise/includes/header_entreprise.php'; ?>
+
 <!doctype html>
 <html lang="fr">
   <head>
@@ -26,100 +28,122 @@
             PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
          )
-      );
+      );   
       
-
-
-       $requete = $pdoEntreprise->query( "SELECT * FROM employes"); 
       
-      echo "
-      <table class=\"table table-striped\">
-      <thead>
-      <tr>
-      <th>ID</th>
-      <th>Prenom</th>
-      <th>Nom</th>
-      <th>Sexe</th>
-      <th>Service</th>
-      <th>Salaire</th>
-      <th>Date_embauche</th>
-      </tr>
-      </thead>
-      <tbody>
-                 
-      ";
-      
-      while($ligne = $requete->fetch(PDO:: FETCH_ASSOC)){ 
-        echo "<tr>";
-        echo "<td>". $ligne['id_employes'] . "</td>";       
-        echo "<td>". $ligne['prenom'] . "</td>";
-        echo "<td>". $ligne['nom'] . "</td>";
-        echo "<td>". $ligne['sexe'] . "</td>";
-        echo "<td>". $ligne['service'] . "</td>";
-        echo "<td>". $ligne['salaire'] . "</td>";
-        
-        echo "<td>". date('d/m/y - H:i:s', strtotime($ligne['date_embauche'])). "</td>"; 
-        echo "<td><a class=\"btn btn-primary\" href=\"03-entreprise.php?
-         \">Modifier</a></td>";
-        echo "<td><a class=\"btn btn-primary\" href=\"03-entreprise.php?
-         \">Supprimer</a></td>";
-        
-        echo "</tr>";
-      }
-      echo "
-      </tbody>
-      </table>
-      "  
-      // Réception des informations d'un employé avec $_GET 
+      // $requete = $pdoEntreprise->query( "SELECT * FROM employes WHERE service='secretariat'");
       ?>
 
+  
+      
 
-<div class="row">
+
+
+<main class="container">
+          
+<?php 
+             $requete = $pdoEntreprise ->query ( "SELECT * FROM employes WHERE prenom='Employé'"); /* Ds la variable $requete => je fs ma requete en SQL grâce à la fonction query(). Cette dernière dt automatiquemment s'appuyer sr ma variable ds laquelle j'ai placé les infos de connection. */
+             /* pr débug grâce à mon jeprint_r */
+             $ligne = $requete->fetch(PDO:: FETCH_ASSOC);
+            //  jeprint_r($ligne); 
+            echo '<ol> 
+
+            <li>id_employes :  '.$ligne['id_employes'].'</li>
+            <li>Prenom :  '.$ligne['prenom'].'</li>
+            <li>nom :  '.$ligne['nom'].'</li>
+            <li>sexe :  '.$ligne['sexe'].'</li>
+            <li>service :  '.$ligne['service'].'</li>
+            <li>salaire :  '.$ligne['salaire'].'</li>
+            <li>:date_embauche  '.$ligne['date_embauche'].'</li>
+            </ol>'
+              ?>
+
+      <div class="row col-12">
+
+      <div class="col-12 col-md-6">   
+      <div class="card">
+          <div class="card-header">
+            ID de l'employé' : <?php echo 'id_embauche'; ?>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Prenom : <?php echo 'prenom'; ?></h4>
+            <p class="card-text">nom : <?php echo'nom'; ?></p>
+            <p class="card-text">sexe : <?php echo'sexe'; ?></p>
+            <p class="card-text">service : <?php echo'service'; ?></p>
+            <p class="card-text">salaire : <?php echo'salaire'; ?></p>
+          </div>
+          <div class="card-footer text-muted">
+            Date d'embauchement ou de mise à jour : <?php echo 'date_enregistrement'; ?>
+          </div>
+        </div>
+        </div>
+        </div>
+
+
+
+
+        <div class="col-12 col-md-6">
+          <h2>Mise à jour du dernier salarié</h2>
+          <form action="#" method="POST">
+            <div class="mb-3">
+              <label for="prenom">Prenom</label>
+              <input type="text" name="prenom" id="prenom" class="form-control" value="<?php echo 'prenom'; ?>">
+            </div>
+
+            <div class="mb-3">
+              <label for="nom">nom</label>
+              <input type="text" name="nom" id="nom" class="form-control" value="<?php echo 'nom'; ?>">
+            </div>
+
+            <div class="mb-3">
+              <label for="sexe">sexe</label>
+              <input type="text" name="sexe" id="sexe" class="form-control" value="<?php echo 'sexe'; ?>">
+            </div>
+
+            <div class="mb-3">
+              <label for="service">service</label>
+              <input type="text" name="service" id="service" class="form-control" value="<?php echo 'service'; ?>">
+            </div>
+
+            <div class="mb-3">
+              <label for="salaire">salaire</label>
+              <input type="text" name="salaire" id="salaire" class="form-control" value="<?php echo 'salaire'; ?>">
+            </div>
+
+            <button type="submit" name="submit" class="btn btn-primary">
+            Mes à jour du dernier salarié
+            </button>
+          </form>
+
           <?php 
-          if(isset($_GET['id_embauche'])){
-            // ici on verifie que l'id du commentaire existe ds notre BDD
-            $resultat = $pdoEntreprise->prepare("SELECT * FROM employes WHERE id_embauche = :id_embauche");
+          // 
+          if(!empty($_POST)){/* Je vérifie que mon formulaire n'est ps vide (not empty) */
+            $_POST['prenom'] = htmlspecialchars($_POST['prenom']);
+            $_POST['nom'] = htmlspecialchars($_POST['nom']); /* grâce à ces instructions. je vérifie qu'on ne m'injecte ps de SQL ou du JS et j'évite les failles */
+            $_POST['sexe'] = htmlspecialchars($_POST['sexe']); /* grâce à ces instructions. je vérifie qu'on ne m'injecte ps de SQL ou du JS et j'évite les failles */
+            $_POST['service'] = htmlspecialchars($_POST['service']); /* grâce à ces instructions. je vérifie qu'on ne m'injecte ps de SQL ou du JS et j'évite les failles */
+            $_POST['salaire'] = htmlspecialchars($_POST['salaire']); /* grâce à ces instructions. je vérifie qu'on ne m'injecte ps de SQL ou du JS et j'évite les failles */
+
+            $resultat = $pdoEntreprise->prepare("UPDATE commentaire SET prenom = :prenom, nom = :nom, sexe = :sexe, service = :service, salaire = :salaire WHERE id_commentaire = :id_commentaire");
+
             $resultat->execute(array(
-              ':id_embauche' => $_GET['id_embauche'] /* on associe id_commentaire à l'id récupéré ds le lien de la page */
+              ':id_employes' => $_GET['id_employes'],
+              ':prenom' => $_POST['prenom'],
+              ':nom' => $_POST['nom'],
+              ':sexe' => $_POST['sexe'],
+              ':service' => $_POST['service'],
+              ':salaire' => $_POST['salaire']
             ));
-            if ($resultat ->rowCount() == 0) {/* si l'id_commentaire n'existe pas ds la BDD alors je renvoie vers une autre page */
-              header('location:02-entreprise.php'); /* on redirige vers la page de départ */ 
-              exit(); /* on arrête le script car il ne correspond à rien */
-            }
-            $fiche = $resultat->fetch(PDO::FETCH_ASSOC);
-            }else { /* si j'arrive sur la page sans rien dans l'URL */
-              header('location:02-entreprise.php'); 
-              exit();
-            }          
+            header('location:02_dialogue.php');
+            exit();
+          }
           ?>
-      </div>
+        </div>
 
 
-<div class="row col-12">
-
-<div class="col-12 col-md-6">   
-<div class="card">
-    <div class="card-header">
-      ID de l'embauche : <?php echo $fiche['id_embauche']; ?>
-    </div>
-    <div class="card-body">
-      <h4 class="card-title">Prenom : <?php echo $fiche['prenom']; ?></h4>
-      <p class="card-text">nom : <?php echo $fiche['nom']; ?></p>
-      <p class="card-text">Sexe : <?php echo $fiche['sexe']; ?></p>
-      <p class="card-text">Service : <?php echo $fiche['service']; ?></p>
-      <p class="card-text">salaire : <?php echo $fiche['salaire']; ?></p>
-    </div>
-    <div class="card-footer text-muted">
-      Date d'embauche ou de mise à jour : <?php echo $fiche['date_enregistrement']; ?>
-    </div>
-  </div>
-  </div>
-  </div>
-  </main>
+       
+    </main>
     
-
-    
-
     <!-- Bootstrap JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

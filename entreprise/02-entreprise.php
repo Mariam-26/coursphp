@@ -1,3 +1,5 @@
+<?php require_once '../entreprise/includes/header_entreprise.php'; ?>
+
 <!doctype html>
 <html lang="fr">
   <head>
@@ -7,6 +9,12 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Logo du site -->
+    <link rel="sortcut-icon" href="../entreprise/img/1-logo.jpg">
+  
+  <!-- Ma feuille de styles -->
+  <link rel="stylesheet" href="../entreprise/css/entreprise.css">
 
     <title>Les salariés</title>
   </head>
@@ -61,7 +69,7 @@
         echo "<td>". date('d/m/y - H:i:s', strtotime($ligne['date_embauche'])). "</td>"; 
         echo "<td><a class=\"btn btn-primary\" href=\"03-entreprise.php?
          \">Modifier</a></td>";
-        echo "<td><a class=\"btn btn-primary\" href=\"03-entreprise.php?
+        echo "<td><a class=\"btn btn-danger\" href=\"03-entreprise.php?
          \">Supprimer</a></td>";
         
         echo "</tr>";
@@ -97,7 +105,7 @@
             <div class="mb-3">
               <label for="salaire">Votre salaire</label>
               <input type="text" name="salaire" id="salaire" class="form-control" required> <br>
-              <button type="submit" class="btn btn-success">Ajouter</button>
+              <button type="submit" class="btn btn-success">Ajouter un salarié</button>
             </div>
           </form>
 

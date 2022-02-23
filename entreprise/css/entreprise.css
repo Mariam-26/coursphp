@@ -1,0 +1,28 @@
+/* style général */
+
+header {
+    margin: auto;
+    background-color: #040404;
+    color: ivory;
+    height: 25vh;
+}
+
+nav ul a {
+    font-size: 1.2rem;
+    margin-right: 20px;
+    color: ivory !important;
+}
+
+.entreprise {
+    font-size: 2rem !important;
+    margin-right: 350px !important;
+    color: ivory !important;
+}
+
+footer {
+    margin: auto !important;
+    text-align: center !important;
+    background-color: #040404;
+    color: ivory;
+    height: 25vh;
+}
