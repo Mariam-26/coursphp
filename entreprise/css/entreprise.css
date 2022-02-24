@@ -40,6 +40,10 @@ nav ul a:hover {
     color: cyan;
 }
 
+main p {
+    text-indent: 10px !important;
+}
+
 footer {
     margin: auto !important;
     text-align: center !important;
