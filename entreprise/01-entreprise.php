@@ -1,5 +1,9 @@
-<!-- INCLUSION DU HEADER -->
-<?php require_once '../entreprise/includes/header_entreprise.php'; 
+<?php 
+// Je définie le titre
+$titre = "Back office entreprise";
+
+// INCLUSION DU HEADER
+require_once '../entreprise/includes/header_entreprise.php'; 
 
 // CONNECTION A LA BASE DE DONNEES
 require_once '../entreprise/connect.php';
