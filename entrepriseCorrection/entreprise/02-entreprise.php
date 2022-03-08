@@ -1,4 +1,4 @@
-<?php
+.<?php
 // 1- Méthodes de debug
 require('inc/functions.php');
 
@@ -45,11 +45,11 @@ $contenu = "";
 if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['id_employes'])) {
     // si l'indice "action" existe dans $_GET et que sa valeur est "suppression" et que l'indice "id_employes" existe  aussi, alors je peux traiter la suppression de l'employé demandé // Voir lien sur le bouton suppression
 
-    $resultat = $pdoEntreprise->prepare(" DELETE FROM employes WHERE id_employes = :id_employes ");/* Je prépare ma requête avec un marqueur vide */
+    $resultat = $pdoEntreprise->prepare(" DELETE FROM employes WHERE id_employes = :id_employes ");/* Je prépare ma requête avec un marqueur vide : 'id_employes' */
 
     $resultat->execute(array(
         ':id_employes' => $_GET['id_employes']
-    ));/* Je signifie que le marqueur vide correspond à l'id_employes récupéré */
+    ));/* Je signifie que le marqueur vide correspond à l'id_employes récupéré ds $_GET id_empoyes */
 
     if ($resultat->rowCount() == 0) {
         $contenu .= '<div class="alert alert-danger">Erreur de suppression de l\'employé n° ' . $_GET['id_employes'] . ' </div>';/* si ça n'a pas fonctionné j'affiche ça */

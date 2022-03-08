@@ -23,8 +23,8 @@ if (isset($_GET['id_employes'])) {
         header('location:02-entreprise.php');
         exit();
     }
-    $fiche = $resultat->fetch(PDO::FETCH_ASSOC);
-} else {
+    $fiche = $resultat->fetch(PDO::FETCH_ASSOC); /* Sr notre variable résultat qui contient notre requête (ici  on sélection ttes ls infos d'un employé donné)  on demande fetch (va chercher) et on lui indique qu'il ft recupérer les infos ds la BDD FETCH_ASSOC permet de renvoyer ls résultats d'une rangée comme venant d'un tableau*/
+} else {/* si la personne vient sur la page juste 03-entreprise.ph on la renvoie vers la page °2-entreprise.php //Doit être à l'exterieur du if principal car on demande de sortir di on ne récupère ps l'id_employes ds l'URL  */
     header('location:02-entreprise.php');
     exit();
 }
@@ -129,7 +129,7 @@ if (!empty($_POST)) {
 
                     <div class="mb-3">
                         <label for="prenom" class="form-label">Prénom</label>
-                        <input type="text" name="prenom" id="prenom" class="form-control" value="<?php echo $fiche['prenom']; ?>">
+                        <input type="text" name="prenom" id="prenom" class="form-control" value="<?php echo $fiche['prenom']; ?>" required>
                     </div>
 
                     <div class="mb-3">
@@ -151,9 +151,9 @@ if (!empty($_POST)) {
                             <?php
                             // requete pour le select du service
                             $requete_service = $pdoEntreprise->query("SELECT DISTINCT service FROM employes");
-                            while ($service = $requete_service->fetch((PDO::FETCH_ASSOC))) {
+                            while ($service = $requete_service->fetch(PDO::FETCH_ASSOC)) {
 
-                                echo "<option value=\"" . $service['service'] . "\" >" . $service['service'] . "</option>";
+                                echo "<option value=\"" . $service['service'] . "\" >" . $service['service'] . "</option>"; /* ici on sélection ts ls services qui existent ds la BDD et on ls affiche en tant qu'option avec la valeur à laquelle l'option correspond */
                             }
                             ?>
                         </select>
