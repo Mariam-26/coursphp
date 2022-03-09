@@ -4,7 +4,7 @@ require('inc/functions.php');
 
 // 2- Connexion à la BDD
 $pdoBlog = new PDO(
-    'mysql:host=localhost;dbname=entreprise',
+    'mysql:host=localhost;dbname=blog',
     'root',
     '',
     array(
@@ -23,7 +23,7 @@ if (!empty($_POST)) {/* SI le formulaire n'est pas vide, j'exécute ce qui suit 
     $_POST['date_parution'] = htmlspecialchars($_POST['date_parution']);
     
     /* Je prépare ma requête avec des marqueurs pour l'instant vides */
-    $insertion = $pdoEntreprise->prepare(" INSERT INTO articles(image, titre, contenu, auteur, date_parution) VALUES (:image, :titre, :contenu, :auteur, :date_parution) ");
+    $insertion = $pdoBlog->prepare(" INSERT INTO articles(image, titre, contenu, auteur, date_parution) VALUES (:image, :titre, :contenu, :auteur, :date_parution) ");
 
     $insertion->execute(array(
         ':image' => $_POST['image'],
@@ -44,7 +44,7 @@ $contenu = "";
 if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['id'])) {
     // si l'indice "action" existe dans $_GET et que sa valeur est "suppression" et que l'indice "id" existe  aussi, alors je peux traiter la suppression de l'employé demandé // Voir lien sur le bouton suppression
 
-    $resultat = $pdoEntreprise->prepare(" DELETE FROM articles WHERE id = :id ");/* Je prépare ma requête avec un marqueur vide : 'id_employes' */
+    $resultat = $pdoBlog->prepare(" DELETE FROM articles WHERE id = :id ");/* Je prépare ma requête avec un marqueur vide : 'id_employes' */
 
     $resultat->execute(array(
         ':id' => $_GET['id']
@@ -79,7 +79,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
     <main>
         <div class="p-5 bg-light">
             <div class="container">
-                <h1 class="display-3">Back Office Entreprise</h1>
+                <h1 class="display-3">Modelisation de la BDD</h1>
                 <p class="lead">Page articles</p>
             </div>
         </div>
@@ -97,19 +97,18 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                     <h2 class="text-center">Les articles</h2>
                     <?php
                     // 2- J'affiche un tableau avec les personnes travaillant dans l'entreprise
-                    $requete = $pdoEntreprise->query(" SELECT * FROM articles ");
+                    $requete = $pdoBlog->query(" SELECT * FROM articles ");
                     ?>
 
                     <table class="table table-striped table-hover table-sm">
                         <thead>
                             <tr class="text-center">
                                 <th>Id</th>
-                                <th>Nom</th>
-                                <th>Prénom</th>
-                                <th>Sexe</th>
-                                <th>Service</th>
-                                <th>Salaire</th>
-                                <th>Date d'embauche</th>
+                                <th>Image</th>
+                                <th>Titre</th>
+                                <th>Contenu</th>
+                                <th>Auteur</th>
+                                <th>Date de parution</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -120,6 +119,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                                     <td><?php echo $ligne['id']; ?></td>
                                     <td><?php echo $ligne['image']; ?></td>
                                     <td><?php echo $ligne['titre']; ?></td>
+                                    <td><?php echo $ligne['contenu']; ?></td>
+                                    <td><?php echo $ligne['auteur']; ?></td>
                                     <!-- <td><?php
                                         if ($ligne['sexe'] == 'f') {
                                             echo "Femme";
@@ -127,17 +128,15 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                                             echo "Homme";
                                         }
                                         ?></td> -->
-                                    <td><?php echo $ligne['cotenu']; ?></td>
-                                    <td><?php echo $ligne['auteur']; ?></td>
                                     <td><?php echo date('d-m-Y', strtotime($ligne['date_parution'])); ?></td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="aricle.php?id=<?php echo $ligne['id']; ?>" class="btn btn-success">Voir</a>
+                                            <a href="aricle.php?id=<?php echo $ligne['id']; ?>" class="btn btn-success">Modification</a>
                                             <!-- Ici le bouton pour la suppression = 
                                                   1- Je lui passe l'action suppression
                                                   2- je lui passe l'id de l'employé  
                                                     -->
-                                            <a href="02-entreprise.php?action=suppression&id_employes=<?php echo $ligne['id_employes']; ?>" class="btn btn-danger" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cet employé ?'))">Supprimer</a>
+                                            <a href="articles.php?action=suppression&id=<?php echo $ligne['id']; ?>" class="btn btn-danger" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))">Supprimer</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -149,49 +148,43 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                 </div><!-- fin col -->
 
                 <div class="col-12 col-lg-4">
-                    <h2 class="text-center mb-4">Ajout d'un employé</h2>
+                    <h2 class="text-center mb-4">Ajout d'un article</h2>
 
                     <form action="#" method="POST" class="border bg-light p-2 rounded mx-auto">
 
                         <div class="mb-3">
-                            <label for="prenom">Prénom de l'employé :</label>
-                            <input type="text" name="prenom" id="prenom" class="form-control" required>
-                        </div><!-- PRENOM -->
+                            <label for="image">image de l'article :</label>
+                            <input type="text" name="image" id="image" class="form-control" required>
+                        </div><!-- IMAGE -->
 
                         <div class="mb-3">
-                            <label for="nom">Nom de l'employé :</label>
-                            <input type="text" name="nom" id="nom" class="form-control" required>
-                        </div><!-- NOM -->
+                            <label for="titre">Titre de l'article :</label>
+                            <input type="text" name="titre" id="titre" class="form-control" required>
+                        </div><!-- TITRE -->
                         
                         <div class="mb-3">
-                            <label for="sexe">Genre :</label> <br>
-                            <input type="radio" name="sexe" value="m" id="sexe" checked> Homme <br>
-                            <input type="radio" name="sexe" value="f" <?php if (isset($fiche['sexe']) && $fiche['sexe'] == 'f') echo ' checked'; ?> id="sexe"> Femme
-                        </div><!-- GENRE -->
+                            <label for="contenu">Contenu de l'article :</label>
+                            <input type="text" name="contenu" id="contenu" class="form-control" required>
+                        </div><!-- CONTENU -->
 
                         <div class="mb-3">
-                            <label for="service">Service de l'employé :</label>
-                            <select name="service" id="service" class="form-select">
+                            <label for="auteur">Auteur de l'article :</label>
+                            <select name="auteur" id="auteur" class="form-select">
                                 <?php
-                                $requete_service = $pdoEntreprise->query("SELECT DISTINCT service FROM employes");
-                                while ($service = $requete_service->fetch((PDO::FETCH_ASSOC))) {
-                                    echo "<option value=\"" . $service['service'] . "\" >" . $service['service'] . "</option>";
+                                $requete_auteur = $pdoBlog->query("SELECT DISTINCT auteur FROM articles");
+                                while ($auteur = $requete_auteur->fetch((PDO::FETCH_ASSOC))) {
+                                    echo "<option value=\"" . $auteur['auteur'] . "\" >" . $auteur['auteur'] . "</option>";
                                 }
                                 ?>
                             </select>
                         </div><!-- SERVICE -->
 
                         <div class="mb-3">
-                            <label for="date_embauche" class="form-label">Date d'embauche</label>
-                            <input type="date" name="date_embauche" id="date_embauche" class="form-control" required>
-                        </div><!-- DATE D'EMBAUCHE -->
+                            <label for="date_parution" class="form-label">Date de parution</label>
+                            <input type="date" name="date_parution" id="date_parution" class="form-control" required>
+                        </div><!-- DATE DE PARUTION -->
 
-                        <div class="mb-3">
-                            <label for="salaire">Salaire :</label>
-                            <input type="number" name="salaire" id="salaire" class="form-control" required>
-                        </div><!-- SALAIRE -->
-
-                        <button type="submit" class="btn btn-success" name="submit" id="submit">Ajouter l'employé</button><!-- BOUTON SUBMIT -->
+                        <button type="submit" class="btn btn-success" name="submit" id="submit">Ajouter un article</button><!-- BOUTON SUBMIT -->
 
                     </form>
                 </div>
