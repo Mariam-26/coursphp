@@ -117,26 +117,21 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                             <?php while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) { ?>
                                 <tr class="text-center">
                                     <td><?php echo $ligne['id']; ?></td>
-                                    <td><?php echo $ligne['image']; ?></td>
+                                    <td><img src="<?php echo $ligne['image']; ?>" alt="" class="img-fluid">
+                                    </td>
                                     <td><?php echo $ligne['titre']; ?></td>
                                     <td><?php echo $ligne['contenu']; ?></td>
                                     <td><?php echo $ligne['auteur']; ?></td>
-                                    <!-- <td><?php
-                                        if ($ligne['sexe'] == 'f') {
-                                            echo "Femme";
-                                        } else {
-                                            echo "Homme";
-                                        }
-                                        ?></td> -->
+                                    
                                     <td><?php echo date('d-m-Y', strtotime($ligne['date_parution'])); ?></td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="aricle.php?id=<?php echo $ligne['id']; ?>" class="btn btn-success">Modification</a>
+                                        <a href="article.php?id=<?php echo $ligne['id']; ?>" class="btn btn-success">Modification</a>
                                             <!-- Ici le bouton pour la suppression = 
                                                   1- Je lui passe l'action suppression
                                                   2- je lui passe l'id de l'employé  
                                                     -->
-                                            <a href="articles.php?action=suppression&id=<?php echo $ligne['id']; ?>" class="btn btn-danger" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))">Supprimer</a>
+                                            <a href="article.php?action=suppression&id=<?php echo $ligne['id']; ?>" class="btn btn-danger" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))">Supprimer</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -154,7 +149,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
 
                         <div class="mb-3">
                             <label for="image">image de l'article :</label>
-                            <input type="text" name="image" id="image" class="form-control" required>
+                            <input type="image" name="image" id="image" class="form-control" required>
                         </div><!-- IMAGE -->
 
                         <div class="mb-3">

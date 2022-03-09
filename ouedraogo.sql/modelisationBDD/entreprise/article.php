@@ -93,7 +93,7 @@ if (!empty($_POST)) {
 
                 <div class="card">
                     <div class="card-header">
-                        <h4 class="text-center"><?php echo $fiche['image'] . " " . $fiche['titre']; ?></h4>
+                        <h4 class="text-center"><?php echo $fiche['auteur'] . " " . $fiche['titre']; ?></h4>
                     </div>
                     <div class="card-body">
                         <p class="card-text">Contenu : <?php echo $fiche['contenu'] ?></p>
@@ -103,7 +103,7 @@ if (!empty($_POST)) {
                             echo date('d/m/Y', strtotime($fiche['date_parution']))
                             ?>
                         </p>
-                        <p class="card-text">Auteur : <?php echo $fiche['auteur']; ?></p>
+                        <p class="card-text">Image : <img src=" <?php echo $fiche['auteur']; ?>" alt=""></p>
                     </div>
                 </div>
 
