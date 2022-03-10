@@ -18,8 +18,8 @@ header {
 }
 
 nav ul a {
-    font-size: 1.2rem;
-    margin-right: 20px;
+    font-size: 1.1rem;
+    margin-right: 15px;
     color: rgba(255, 255, 255, 0.7) !important;
     text-transform: uppercase;
 }
@@ -28,26 +28,26 @@ nav ul a:hover {
     color: cyan !important;
 }
 
-.entreprise {
-    text-transform: uppercase;
+.blog {
+    text-transform: uppercase !important;
     font-size: 2rem !important;
     font-weight: bold;
-    margin-right: 350px !important;
-    color: rgba(255, 255, 255, 0.7);
+    margin-right: 320px !important;
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
-.entreprise:hover {
-    color: cyan;
+.blog:hover {
+    color: cyan !important;
 }
 
 main p {
-    text-indent: 5em;
+    text-indent: 5em !important;
 }
 
 footer {
     margin: auto !important;
     text-align: center !important;
     background-color: #040404;
-    color: rgba(255, 255, 255, 0.7);
-    height: 25vh;
+    color: rgba(255, 255, 255, 0.7) !important;
+    height: 25vh !important;
 }

@@ -1,17 +1,17 @@
 <?php
-// 1-Méthodes de debug
+// Je définie le titre
+$titre = "Blog - Article";
+
+// INCLUSION DU HEADER
+require_once '../modelisationBDD/includes/header_blog.php';
+
+$nav = "article";
+
+// 1- Méthodes de debug
 require('inc/functions.php');
 
-// 2- Connexion BDD
-$pdoBlog = new PDO(
-    'mysql:host=localhost;dbname=blog',
-    'root',
-    '',
-    array(
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, // afficher les erreurs SQL dans le navigateur
-        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', // charset des échanges avec la BDD
-    )
-);
+// CONNECTION A LA BASE DE DONNEES
+require_once '../modelisationBDD/connect.php';
 
 // 3- Réception des infos d'un employé avec $_GET
 if (isset($_GET['id'])) {
@@ -55,22 +55,7 @@ if (!empty($_POST)) {
 }
 
 ?>
-<!doctype html>
-<html lang="fr">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Modelisation de la BDD - mise à jour d'un article</title>
-
-</head>
-
-<body>
     <?php require_once('inc/nav.inc.php') ?>
     <div class="p-5 bg-light">
         <div class="container">
@@ -87,7 +72,7 @@ if (!empty($_POST)) {
             <div class="col-md-4 alert-primary rounded p-5">
                 <!-- J'affiche toutes les informations relatives à l'employé sélectionné -->
 
-                <h2 class="text-center mb-4">Fiche de l'article
+                <h2 class="text-center mb-4" id="article">Fiche de l'article
                     
                     </h2>
 
@@ -162,8 +147,7 @@ if (!empty($_POST)) {
         </div>
         <!-- fin container  -->
     </main>
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+    <!-- FIN MAIN -->
 
-</html>
+    <!-- INCLUSION DU FOOTER -->
+<?php require_once '../modelisationBDD/includes/footer_blog.php'; ?>

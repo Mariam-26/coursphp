@@ -1,17 +1,17 @@
-.<?php
-// 1- Méthodes de debug
-require('inc/functions.php');
+<?php
+// Je définie le titre
+$titre = "Blog - les articles";
 
-// 2- Connexion à la BDD
-$pdoBlog = new PDO(
-    'mysql:host=localhost;dbname=blog',
-    'root',
-    '',
-    array(
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
-        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-    )
-);
+// INCLUSION DU HEADER
+require_once '../modelisationBDD/includes/header_blog.php';
+
+$nav = "articles";
+
+// CONNECTION A LA BASE DE DONNEES
+require_once '../modelisationBDD/connect.php';
+
+// Méthodes de debug
+require('inc/functions.php');
 
 // 3- Vérification du formulaire d'insertion
 if (!empty($_POST)) {/* SI le formulaire n'est pas vide, j'exécute ce qui suit */
@@ -58,43 +58,19 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
 }
 
 ?>
-<!doctype html>
-<html lang="fr">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Les articles</title>
-
-</head>
-
-<body>
-    <!-- 6- Ma nav en require_once -->
-    <?php require_once('inc/nav.inc.php'); ?>
-    <main>
-        <div class="p-5 bg-light">
-            <div class="container">
-                <h1 class="display-3">Modelisation de la BDD</h1>
-                <p class="lead">Page articles</p>
-            </div>
-        </div>
-        <!-- fin container-fluid header  -->
-        <div class="container bg-white mt-2 mb-2 m-auto p-2">
+<!-- MAIN -->
+<main class="container">
+    <div class="row col-12">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+    <h1 class="p-5 text-center" id="articles">Les articles</h1>
 
             <!-- J'afficherai ici ce qui se trouve dans le contenu pour la suppression d'un élément -->
             <?php
             echo $contenu;
             ?>
 
-            <section class="row">
-
-                <div class="col-12 col-lg-8 table-responsive">
-                    <h2 class="text-center">Les articles</h2>
+            
                     <?php
                     // 2- J'affiche un tableau avec les personnes travaillant dans l'entreprise
                     $requete = $pdoBlog->query(" SELECT * FROM articles ");
@@ -115,7 +91,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                         <tbody>
                             <!-- ouverture de la boucle while -->
                             <?php while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) { ?>
-                                <tr class="text-center">
+                                <tr>
                                     <td><?php echo $ligne['id']; ?></td>
                                     <td><img src="<?php echo $ligne['image']; ?>" alt="" class="img-fluid">
                                     </td>
@@ -140,9 +116,9 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                         </tbody>
                     </table>
 
-                </div><!-- fin col -->
+                
 
-                <div class="col-12 col-lg-4">
+                <div class="col-12 col-md-6 m-auto p-5">
                     <h2 class="text-center mb-4">Ajout d'un article</h2>
 
                     <form action="#" method="POST" class="border bg-light p-2 rounded mx-auto">
@@ -185,14 +161,11 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                 </div>
                 <!-- fin col -->
 
-            </section>
-            <!-- fin row -->
-
+                </div><!-- fin col -->         
         </div>
         <!-- fin container  -->
     </main>
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+    <!-- FIN MAIN -->
 
-</html>
+<!-- INCLUSION DU FOOTER -->
+<?php require_once '../modelisationBDD/includes/footer_blog.php'; ?>
