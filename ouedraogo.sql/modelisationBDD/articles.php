@@ -5,6 +5,7 @@ $titre = "Blog - les articles";
 // INCLUSION DU HEADER
 require_once '../modelisationBDD/includes/header_blog.php';
 
+// ACTIVER ARTICLES DANS LA BAR DE NAVIGATION
 $nav = "articles";
 
 // CONNECTION A LA BASE DE DONNEES
@@ -78,7 +79,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
 
                     <table class="table table-striped table-hover table-sm">
                         <thead>
-                            <tr class="text-center">
+                            <tr class="">
                                 <th>Id</th>
                                 <th>Image</th>
                                 <th>Titre</th>
@@ -93,7 +94,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                             <?php while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) { ?>
                                 <tr>
                                     <td><?php echo $ligne['id']; ?></td>
-                                    <td><img src="<?php echo $ligne['image']; ?>" alt="" class="img-fluid">
+                                    <td><img src="<?php echo $ligne['image']; ?>" alt="IMAGE" class="img-fluid">
                                     </td>
                                     <td><?php echo $ligne['titre']; ?></td>
                                     <td><?php echo $ligne['contenu']; ?></td>
@@ -102,12 +103,12 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                                     <td><?php echo date('d-m-Y', strtotime($ligne['date_parution'])); ?></td>
                                     <td>
                                         <div class="btn-group">
-                                        <a href="article.php?id=<?php echo $ligne['id']; ?>" class="btn btn-success">Modification</a>
+                                        <a href="article.php?id=<?php echo $ligne['id']; ?>" class="btn btn-success m-2">Modification</a>
                                             <!-- Ici le bouton pour la suppression = 
                                                   1- Je lui passe l'action suppression
                                                   2- je lui passe l'id de l'employé  
                                                     -->
-                                            <a href="article.php?action=suppression&id=<?php echo $ligne['id']; ?>" class="btn btn-danger" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))">Supprimer</a>
+                                            <a href="article.php?action=suppression&id=<?php echo $ligne['id']; ?>" class="btn btn-danger m-2" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))">Supprimer</a>
                                         </div>
                                     </td>
                                 </tr>

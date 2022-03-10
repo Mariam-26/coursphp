@@ -5,6 +5,7 @@ $titre = "Blog - Article";
 // INCLUSION DU HEADER
 require_once '../modelisationBDD/includes/header_blog.php';
 
+// ACTIVER ARTICLE DANS LA BAR DE NAVIGATION
 $nav = "article";
 
 // 1- Méthodes de debug
@@ -56,48 +57,49 @@ if (!empty($_POST)) {
 
 ?>
 
-    <?php require_once('inc/nav.inc.php') ?>
+    
     <div class="p-5 bg-light">
         <div class="container">
-            <h1 class="display-3">Modelisation de la BDD</h1>
-            <p class="lead">Mise à jour de l'article #<?php echo $fiche['id'] ?></p>
+           
+            <p class="lead t-center ">Mise à jour de l'article #<?php echo $fiche['id'] ?></p>
             <p class="lead">
                 <a class="btn btn-primary btn-lg" href="articles.php" role="button">Voir tous les articles</a>
             </p>
         </div>
     </div>
-    <main class="container">
-        <section class="row my-5">
 
-            <div class="col-md-4 alert-primary rounded p-5">
+    <!-- MAIN -->
+<main class="container">
+  <div class="row col-12">
+      <div class="col-lg-12 col-md-12 col-sm-12 p-5">
+      
                 <!-- J'affiche toutes les informations relatives à l'employé sélectionné -->
 
-                <h2 class="text-center mb-4" id="article">Fiche de l'article
-                    
-                    </h2>
+                <h1 class="text-center mb-4" id="article">Fiche de l'article</h1>
 
-                <div class="card">
+                <div class="card p-5">
                     <div class="card-header">
-                        <h4 class="text-center"><?php echo $fiche['auteur'] . " " . $fiche['titre']; ?></h4>
+                        <h4 class="text-center"><?php echo $fiche['auteur'] . " " . ":" . " " . $fiche['titre']; ?></h4>
                     </div>
                     <div class="card-body">
                         <p class="card-text">Contenu : <?php echo $fiche['contenu'] ?></p>
+
+                        <p class="card-text">Image : <img src=" <?php echo $fiche['image']; ?>" alt="IMAGE" class="img-fluid"></p>
                         
                         <p class="card-text">Date de parution :
                             <?php
                             echo date('d/m/Y', strtotime($fiche['date_parution']))
                             ?>
-                        </p>
-                        <p class="card-text">Image : <img src=" <?php echo $fiche['auteur']; ?>" alt=""></p>
+                        </p>                      
                     </div>
                 </div>
 
             </div>
             <!-- fin col -->
 
-            <div class="col-md-8 alert-warning p-5 rounded">
+            <div class="col-12 col-md-6 m-auto alert-warning p-5 rounded">
                 <!-- Je m'occupe de la màj de la fiche de l'employé concerné -->
-                <h2 class="text-center">Mettre à jour <?php  ?></h2>
+                <h2 class="text-center p-3">Mise à jour de l'article</h2>
                 <form action="#" method="POST">
                     <!-- IL FAUT PENSER LORSQUE L'ON FAIT UN FORMULAIRE DE MISE A JOUR A PASSER EN VALUE LES DONNEES POUR VOIR CE QUI ETAIT AVANT ET CE QUE L'ON VEUT CHANGER -->
 
@@ -121,15 +123,11 @@ if (!empty($_POST)) {
                             $requete_contenu = $pdoBlog->query("SELECT DISTINCT contenu FROM articles");
                             while ($contenu = $requete_contenu->fetch(PDO::FETCH_ASSOC)) {
 
-                                echo "<option value=\"" . $contenu['contenu'] . "\" >" . $contenu['contenu'] . "</option>"; /* ici on sélection ts ls contenus qui existent ds la BDD et on ls affiche en tant qu'option avec la valeur à laquelle l'option correspond */
+                                // echo "<option value=\"" . $contenu['contenu'] . "\" >" . $contenu['contenu'] . "</option>"; 
+                                /* ici on sélection ts ls contenus qui existent ds la BDD et on ls affiche en tant qu'option avec la valeur à laquelle l'option correspond */
                             }
                             ?>
                         </select>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="date_embauche" class="form-label">Date de parution</label>
-                        <input type="date" name="date_parution" id="date_parution" class="form-control" value="<?php echo $fiche['date_parution']; ?>"><!-- Bien penser à mettre un input type date -->
                     </div>
 
                     <div class="mb-3">
@@ -137,13 +135,17 @@ if (!empty($_POST)) {
                         <input type="text" name="auteur" id="auteur" class="form-control" value="<?php echo $fiche['auteur']; ?>">
                     </div><!-- Ici un input de type text pour être sur de ne pas insérer de string -->
 
+                    <div class="mb-3">
+                        <label for="date_embauche" class="form-label">Date de parution</label>
+                        <input type="date" name="date_parution" id="date_parution" class="form-control" value="<?php echo $fiche['date_parution']; ?>"><!-- Bien penser à mettre un input type date -->
+                    </div>
+
                     <button type="submit" class="btn btn-warning">Mettre à jour</button>
                 </form>
 
             </div>
             <!-- fin col -->
-        </section>
-        <!-- fin row -->
+            
         </div>
         <!-- fin container  -->
     </main>

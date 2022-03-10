@@ -16,11 +16,7 @@ require_once '../entreprise/connect.php';
   <div class="row col-12">
       <div class="col-lg-12 col-md-12 col-sm-12">
       <h1 class="p-5 text-center">mariam Ouédraogo<h1>         
-      <div class="row">
-        
-   
-      </div>
-
+      
       <!-- CARD  -->
       <div class="col-12 col-md-6">   
       <div class="card">
@@ -109,6 +105,7 @@ require_once '../entreprise/connect.php';
             // exit();
           }
           ?>        
+        </div>
         </div>
         </div>
          

@@ -5,6 +5,7 @@ $titre = "Blog - Accueil";
 // INCLUSION DU HEADER
 require_once '../modelisationBDD/includes/header_blog.php';
 
+// ACTIVER ACCUEIL DANS LA BAR DE NAVIGATION
 $nav = "accueil";
 
 // 1- Méthodes de debug
@@ -39,7 +40,7 @@ require_once '../modelisationBDD/connect.php';
                                 <tr>
                                     <td><?php echo $ligne['id']; ?>
                                     </td>
-                                    <td><img src="<?php echo $ligne['image']; ?>" alt="" class="img-fluid">
+                                    <td><img src="<?php echo $ligne['image']; ?>" alt="IMAGE" class="img-fluid">
                                     </td>
                                     <td><?php echo $ligne['titre']; ?></td>
                                     <td><?php echo $ligne['contenu']; ?></td>
