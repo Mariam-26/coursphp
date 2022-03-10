@@ -15,7 +15,7 @@ require('inc/functions.php');
 require_once '../modelisationBDD/connect.php';
 ?>
 
- <!-- MAIN -->
+<!-- MAIN -->
 <main class="container">
     <div class="row col-12">
       <div class="n col-lg-12 col-md-12 col-sm-12">
@@ -36,7 +36,7 @@ require_once '../modelisationBDD/connect.php';
                             </tr>
                         </thead>
                         <tbody>
-                            <?php while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) { ?><!-- ouverture de la boucle while -->
+                            <?php while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) { ?><!-- ouverture de la boucle WHILE -->
                                 <tr>
                                     <td><?php echo $ligne['id']; ?>
                                     </td>
@@ -47,13 +47,12 @@ require_once '../modelisationBDD/connect.php';
                                     <td><?php echo $ligne['auteur']; ?></td>
                                     <td><?php echo date('d-m-Y', strtotime($ligne['date_parution'])); ?></td>
                                 </tr>
-                            <?php } ?><!-- fermeture de la boucle -->
+                            <?php } ?><!-- fermeture de la boucle WHILE-->
                         </tbody>
                     </table>
-
                 </div><!-- fin col -->         
         </div>
-        <!-- fin container  -->
+        <!-- FIN ROW -->
     </main>
     <!-- FIN MAIN -->
 

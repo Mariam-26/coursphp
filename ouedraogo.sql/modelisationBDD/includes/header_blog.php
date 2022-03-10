@@ -50,6 +50,8 @@
         </nav>
         <!-- FIN NAV --> 
       </div>
-   </div class="row col-12"> 
+      <!-- FIN COL -->
+   </div>
+    <!--FIN ROW  -->
 </header>
 <!-- FIN HEADER -->
