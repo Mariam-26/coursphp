@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : mar. 08 mars 2022 à 12:11
+-- Généré le : jeu. 10 mars 2022 à 10:05
 -- Version du serveur : 5.7.33
 -- Version de PHP : 7.4.19
 
@@ -47,8 +47,8 @@ INSERT INTO `articles` (`id`, `image`, `titre`, `contenu`, `auteur`, `date_parut
 (2, 'https://cdn.pixabay.com/photo/2017/03/14/14/49/cat-2143332__340.jpg', 'Beau chat', 'Lorem ipsum dolor sit amet. Est quaerat quisquam qui consequatur iste et quibusdam aliquid est placeat vero ut suscipit modi qui accusantium fugiat? Est nihil voluptatum non accusantium odio vel galisum molestias. Hic reprehenderit placeat et reprehenderit perspiciatis qui iusto eius non consequuntur voluptatem aut cupiditate commodi est facere ipsum. Quo sapiente quos et autem voluptatem vel blanditiis fuga non dolor doloremque qui consequatur nostrum est quibusdam commodi.', 'Justine.P', '2022-03-08'),
 (3, 'https://cdn.pixabay.com/photo/2019/04/16/16/19/tokyo-4132144__340.jpg', 'Car', 'Lorem ipsum dolor sit amet. Est quaerat quisquam qui consequatur iste et quibusdam aliquid est placeat vero ut suscipit modi qui accusantium fugiat? Est nihil voluptatum non accusantium odio vel galisum molestias. Hic reprehenderit placeat et reprehenderit perspiciatis qui iusto eius non consequuntur voluptatem aut cupiditate commodi est facere ipsum. Quo sapiente quos et autem voluptatem vel blanditiis fuga non dolor doloremque qui consequatur nostrum est quibusdam commodi.', 'Alou.C', '2022-03-08'),
 (4, 'https://cdn.pixabay.com/photo/2017/12/15/13/51/polynesia-3021072__340.jpg', 'Plage', 'Lorem ipsum dolor sit amet. Est quaerat quisquam qui consequatur iste et quibusdam aliquid est placeat vero ut suscipit modi qui accusantium fugiat? Est nihil voluptatum non accusantium odio vel galisum molestias. Hic reprehenderit placeat et reprehenderit perspiciatis qui iusto eius non consequuntur voluptatem aut cupiditate commodi est facere ipsum. Quo sapiente quos et autem voluptatem vel blanditiis fuga non dolor doloremque qui consequatur nostrum est quibusdam commodi.', 'Awa.M', '2022-03-08'),
-(5, '\r\nhttps://cdn.pixabay.com/photo/2018/03/07/07/36/water-3205394_960_720.jpg', 'Nature', 'Lorem ipsum dolor sit amet. Ex fugit aliquam et aliquid ipsa qui maxime doloremque At pariatur galisum in atque placeat non architecto error! Et ipsum quasi et sunt praesentium qui velit porro non libero culpa aut sint voluptas!\r\n\r\nEa cupiditate quas nam nisi sint a maxime omnis! Qui adipisci eveniet et error amet sit repellat harum.\r\n\r\nEum quas voluptatum eos asperiores libero qui labore esse et nihil quia ut voluptatem quisquam et laborum veritatis. Nam distinctio molestiae id quidem praesentium et distinctio dignissimos vel molestias delectus et quasi soluta.', 'Papou.T', '2022-03-08'),
-(6, 'https://media.istockphoto.com/photos/eiffel-tower-in-paris-skyline-at-dawn-picture-id1280246120?b=1&k=20&m=1280246120&s=170667a&w=0&h=9g8hb-FTp7TfrN6gItpxDFKG0wPjwvnZQlNHZaxyeeI=', 'Paris', 'Lorem ipsum dolor sit amet. Ex fugit aliquam et aliquid ipsa qui maxime doloremque At pariatur galisum in atque placeat non architecto error! Et ipsum quasi et sunt praesentium qui velit porro non libero culpa aut sint voluptas!\r\n\r\nEa cupiditate quas nam nisi sint a maxime omnis! Qui adipisci eveniet et error amet sit repellat harum.\r\n\r\nEum quas voluptatum eos asperiores libero qui labore esse et nihil quia ut voluptatem quisquam et laborum veritatis. Nam distinctio molestiae id quidem praesentium et distinctio dignissimos vel molestias delectus et quasi soluta.', 'Moussa.D', '2022-03-08');
+(5, 'https://cdn.pixabay.com/photo/2018/03/07/07/36/water-3205394_960_720.jpg', 'Nature', 'Lorem ipsum dolor sit amet. Ex fugit aliquam et aliquid ipsa qui maxime doloremque At pariatur galisum in atque placeat non architecto error! Et ipsum quasi et sunt praesentium qui velit porro non libero culpa aut sint voluptas!Ea cupiditate quas nam nisi sint a maxime omnis! Qui adipisci eveniet et error amet sit repellat harum.Eum quas voluptatum eos asperiores libero qui labore esse et nihil quia ut voluptatem quisquam et laborum veritatis. Nam distinctio molestiae id quidem praesentium et distinctio dignissimos vel molestias delectus et quasi soluta.', 'Papou.T', '2022-03-08'),
+(6, 'https://media.istockphoto.com/photos/eiffel-tower-in-paris-skyline-at-dawn-picture-id1280246120?b=1&amp;k=20&amp;m=1280246120&amp;s=170667a&amp;w=0&amp;h=9g8hb-FTp7TfrN6gItpxDFKG0wPjwvnZQlNHZaxyeeI=', 'Paris', 'Lorem ipsum dolor sit amet. Ex fugit aliquam et aliquid ipsa qui maxime doloremque At pariatur galisum in atque placeat non architecto error! Et ipsum quasi et sunt praesentium qui velit porro non libero culpa aut sint voluptas!Ea cupiditate quas nam nisi sint a maxime omnis! Qui adipisci eveniet et error amet sit repellat harum.Eum quas voluptatum eos asperiores libero qui labore esse et nihil quia ut voluptatem quisquam et laborum veritatis. Nam distinctio molestiae id quidem praesentium et distinctio dignissimos vel molestias delectus et quasi soluta.', 'Moussa.D', '2022-03-08');
 
 --
 -- Index pour les tables déchargées
@@ -68,7 +68,7 @@ ALTER TABLE `articles`
 -- AUTO_INCREMENT pour la table `articles`
 --
 ALTER TABLE `articles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
