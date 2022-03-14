@@ -53,11 +53,11 @@ $requete = $pdoBlog->query(" SELECT * FROM articles");
                                     <td><?php echo date('d-m-Y', strtotime($article['date_parution'])); ?></td>
                                     <td>
                         <div class="btn-group">
-                        <a href="article.php?id=<?php echo $article['id']; ?>" class="btn btn-primary m-2">Modification</a>
+                        <a href="article1.php?id=<?php echo $article['id']; ?>" class="btn btn-primary m-2">Modification</a>
                         <!-- Ici le bouton pour la suppression = 
                         1- Je lui passe l'action suppression
                         2- je lui passe l'id de l'article --> 
-                        <a href="articles.php?action=suppression&id=<?php echo $article['id']; ?>" class="btn btn-danger m-2" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))">Supprimer</a>
+                        <a href="articles1.php?action=suppression&id=<?php echo $article['id']; ?>" class="btn btn-danger m-2" onclick="return(confirm('Êtes-vous sûr de vouloir supprimer cet article ?'))">Supprimer</a>
                         </div>
                     </td>
                                 </tr>
@@ -65,6 +65,46 @@ $requete = $pdoBlog->query(" SELECT * FROM articles");
                         </tbody>
                     </table>
     </div>
+
+    <div class="col-8mx-auto">
+    <h2 class="text-center">Ajout d'un article</h2>
+
+<form action="#" method="POST" class="border bg-light p-2 rounded mx-auto">
+  <div class="mb-3">
+      <label for="titre">Titre de l'article :</label>
+      <input type="text" name="titre" id="titre" class="form-control" required>
+  </div><!-- TITRE --> <!-- l'attribut name ns sert à récupérer ce qui se trouve ds l'input pr l'envoiyer ds la BDD // c'est la raison pr laquelle il faut absolument que le name corresponde à la colonne de notre BDD -->
+  <!-- pr que qd je clique sr le label j'arrive directement ds l'input, je dois mettre la m chose ds le label FOR et ds l'input ID -->
+  <!-- TITRE -->
+
+  <div class="mb-3">
+        <label for="contenu">Contenu de l'article :</label>
+        <input type="text" name="contenu" id="contenu" class="form-control" required>
+    </div><!-- CONTENU -->
+
+    <div class="mb-3">
+        <label for="image">Image de l'article :</label>
+        <input type="TEXT" name="image" id="image" class="form-control" required placeholder="URL de l'image">
+    </div><!-- IMAGE -->
+    
+    <div class="mb-3">
+        <label for="auteur">Auteur de l'article :</label>
+        <input type="text" name="auteur" id="auteur" class="form-control" require>
+        </input>
+        </div><!-- AUTEUR -->
+
+        <div class="mb-3">
+            <label for="date_parution" class="form-label">Date de parution</label>
+            <input type="date" name="date_parution" id="date_parution" class="form-control" required>
+        </div><!-- DATE DE PARUTION -->
+
+        <button type="submit" class="btn btn-primary" name="submit" >Ajouter un article</button><!-- BOUTON SUBMIT -->
+    </form>
+    <!-- FIN FORM -->
+    </div>
+
+
+
   </div>
 </div>
 

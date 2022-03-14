@@ -51,7 +51,7 @@ if (!empty($_POST)) {
     ));
     /* Je fais ensuite correspondre les marqueurs jusqu'à là vides aux donnéees que je récupère de mon formulaire */
 
-    header('location:articles.php');
+    header('location:articles1.php');
     exit();
 }
 ?>
