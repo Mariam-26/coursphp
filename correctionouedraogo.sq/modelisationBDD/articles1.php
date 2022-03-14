@@ -1,8 +1,54 @@
 <?php 
+// 1- je require ma connection à la base de données
 require('../modelisationBDD/connect.php');
 
-// 4- J'affiche toutes les infos de la table articles 
+// 2- Ma requete pour le  tableau articles 
 $requete = $pdoBlog->query(" SELECT * FROM articles");
+
+// 3- Traitement de l'ajout d'article
+if (!empty($_POST)) {/* SI le formulaire n'est pas vide, j'exécute ce qui suit */
+  /* Je m'assure que je n'ai pas d'insertion de SQL et de failles */
+  $_POST['image'] = htmlspecialchars($_POST['image']);
+  $_POST['titre'] = htmlspecialchars($_POST['titre']);
+  $_POST['contenu'] = htmlspecialchars($_POST['contenu']);
+  $_POST['auteur'] = htmlspecialchars($_POST['auteur']);
+  $_POST['date_parution'] = htmlspecialchars($_POST['date_parution']);
+  
+  /* Je prépare ma requête avec des marqueurs pour l'instant vides */
+  $insertion = $pdoBlog->prepare(" INSERT INTO articles(titre, contenu, image, auteur, date_parution) VALUES (:titre, :contenu, :image, :auteur, :date_parution) ");
+
+// Je fs correspondre ms marqueurs vides aux éléments de mon form
+  $insertion->execute(array(
+    ':titre' => $_POST['titre'],
+    ':contenu' => $_POST['contenu'],
+    ':image' => $_POST['image'],
+    ':auteur' => $_POST['auteur'],
+    ':date_parution' => $_POST['date_parution'],    
+      /* Mes marqueurs sont maintenant remplis avec les données récupérées grâce au name dans le formulaire */
+  ));
+}
+
+// 4- J'initialise ma variable $contenu qui va me servir pr les messages de réussite ou d'erreur pr la supression
+
+$contenu = ""; /* Je fais bien attention !!! i ne faut ps qu'il y est d'espace pr l'initialisation */
+
+// 5- Suppression d'un élément
+// jevar_dump($_GET);/* Vérification de ce que je récupère dans le get */
+if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['id'])) {
+    // si l'indice "action" existe dans $_GET et que sa valeur est "suppression" et que l'indice "id" existe  aussi, alors je peux traiter la suppression de l'article demandé // Voir lien sur le bouton suppression
+
+    $resultat = $pdoBlog->prepare(" DELETE FROM articles WHERE id = :id ");/* Je prépare ma requête avec un marqueur vide : 'id' */
+
+    $resultat->execute(array(
+        ':id' => $_GET['id']
+    ));/* Je signifie que le marqueur vide correspond à l'id récupéré ds $_GET id */
+
+    if ($resultat->rowCount() == 0) {
+        $contenu .= '<div class="alert alert-danger">Erreur de suppression de l\'article n° ' . $_GET['id'] . ' </div>';/* si ça n'a pas fonctionné j'affiche ça */
+    } else {
+        $contenu .= '<div class="alert alert-success">L\'article n° ' . $_GET['id'] . ' a bien été supprimé </div>';/* sinon j'affiche ça */
+    }/* ici je me sers de ma variable contenu qui était vide mais dans laquelle j'injecte désormais du contenu */
+}
 ?>
 
 <!DOCTYPE html>
