@@ -74,6 +74,14 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
   <div class="row">
     <div class="col-12">
 
+     <!-- J'afficherai ici ce qui se trouve dans le contenu pour la suppression d'un élément -->
+     <?php echo $contenu;?>
+          
+          <?php
+              // 2- J'affiche un tableau avec les personnes travaillant dans l'entreprise
+              $requete = $pdoBlog->query(" SELECT * FROM articles ");
+          ?>
+
     <table class="table table-striped">
                         <thead>
                             <tr>
