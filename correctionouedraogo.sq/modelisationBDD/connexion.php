@@ -4,33 +4,34 @@ require_once 'connect.php';
 
 // 2- Traitement du formulaire
 
-if(!empty($_POST)){
-  /* Les if qui suivent vont permettre de vérifier si les valeurs passées dans $_POST correspondent bien à ce qui est attendu en BDD */
-  if(!isset($_POST['pseudo']) || empty($_POST['mdp'])) {/* si le mdp n'est pas defini ou que pseudo et  mdp st requis */
-    $contenu .= "<div class=\"alert alert-warning\">Le mot de passe et le pseudo sont requis !</div>";
-}
-
-if(empty($_POST['contenu'])) { 
-  $resultat = $pdoBlog->prepare("SELECT * FROM membre WHERE pseudo = :pseudo");
-  $resultat->execute(array
-  ':pseudo' => $_POST['pseudo']),
-));
-}
-
-      if($resultat->rowCount() == 1) {/* si au décompte de cette requête on obtient pas 0 c'est que le pseudo existe déjà */
-         $membre = $resultat->fetchch(PDO::FETCH_ASSOC);
-         debug($membre);
-      if(password_verify($_POST['mdp'])){
-        $_SESSION['membres'] = $Membre;
-        header('location:profill.php')
-      }else { /* si le mot de passe n'est pas bon */
-        $contenu .= "<div class=\"alert alert-warning\">Attention, vous n'avez pas le bon mot de passe !</div>";
-      }
-      }else { /* si le pseufo n'est pas bon */
-        $contenu .= "<div class=\"alert alert-warning\">Erreur sur le pseudo, ATTENTION !</div>";
-      }
+if(!empty($_POST)) {
+  if(empty($_POST['pseudo']) || empty($_POST['mdp'])) {
+      $contenu .= "<div class=\"alert alert-warning\"> Le pseudo et le mot de passe sont requis !</div>";
   }
-// } fin IF principal
+
+  if(empty($contenu)) {/* si la variable contenu est vide alors je n'ai pas d'erreurs*/
+  $resultat = $pdoBlog->prepare(" SELECT * FROM membres WHERE pseudo = :pseudo");
+  $resultat->execute(array(
+      ':pseudo' => $_POST['pseudo'],
+  )); /*  je selectionne dans ma BDD le membre dont le pseudo correspond à ce lui du formulaire */
+
+  if($resultat->rowCount() == 1){ /* si la programme renvoie une ligne c'est que ce membre et ce pseudo existent ! */
+      $membre = $resultat->fetch(PDO::FETCH_ASSOC);
+      debug($membre);
+
+      if(password_verify($_POST['mdp'], $membre['mdp'])) {
+          /* password_verify prend deux arguments : le premier est ce que l'on récupère dans le formulaire. Le second est le mdp  hashé qui existe dans la BDD. password_verify vérifie que le mdp hashé qui existe dans la BDD. password_verify vérifie que le premier correspond au deuxieme. */
+          $_SESSION['membres'] = $membre; /* on crée une session avec les infos du membre dans un tableau multidimentionnel */
+          header('location:profil.php');
+          exit();
+      }else{/* Vous n'avez pas le bon mot de passe */
+          $contenu .= "<div class=\"alert alert-danger\">Attention, vous n'avez pas le bon mot de passe !</div>";
+      }
+  }else{ /* si le pseud on'est pas bon */
+      $contenu .="<div class=\"alert alert-danger\">Erreur sur le pseudo ATTENTION !</div>";
+  }
+  }
+}
 
 
 
@@ -43,7 +44,7 @@ if(empty($_POST['contenu'])) {
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blog - Connection</title>
+  <title>Blog - Connexion</title>
   <!-- BOOTSWATCH CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/lux/bootstrap.min.css" integrity="sha512-B5sIrmt97CGoPUHgazLWO0fKVVbtXgGIOayWsbp9Z5aq4DJVATpOftE/sTTL27cu+QOqpI/jpt6tldZ4SwFDZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
@@ -52,7 +53,7 @@ if(empty($_POST['contenu'])) {
 
   <div class="p-5 bg-primary">
       <div class="container">
-          <h1 class="display-3 text-white">Connection Blog</h1>
+          <h1 class="display-3 text-white">Connexion Blog</h1>
           <p class="lead text-white">Connectez-vous à votre compte</p>
       </div>
   </div>
@@ -73,9 +74,6 @@ if(empty($_POST['contenu'])) {
                 <label for="mdp">Mot de passe *</label>
               <input type="password" name="mdp" id="mdp" class="form-control">
           </div>
-
-                  
-
                   <button type="submit" class="btn btn-primary">S'inscrire</button>
 
               </form>
