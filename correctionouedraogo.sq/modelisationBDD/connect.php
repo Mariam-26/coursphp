@@ -23,5 +23,5 @@ define('RACINE_SITE', 'coursphp/correctionouedraogo.sq\modelisationBDD/');
 $contenu = "";
 
 // 5- on inclus le fichier 
-require_once '../modelisationBDD/connect.php';
+require_once 'inc/functions.inc.php';
 

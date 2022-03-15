@@ -23,7 +23,7 @@ function debug($mavar){
 // 2 Je crée une fonction pr vérifier que l'utilisateur est connecté
 
 function estConnecte(){
-  if(isset($_SESSION['membre'])){ /* Si ds la superglobale $_SESSION je récuàère un indice membre , cela signifie que la personne est connectée */
+  if(isset($_SESSION['membres'])){ /* Si ds la superglobale $_SESSION je récuàère un indice membre , cela signifie que la personne est connectée */
     return true; /* Il est connecté */
   }
   else{
