@@ -36,7 +36,7 @@ require_once '../modelisationBDD/connect.php';
                             </tr>
                         </thead>
                         <tbody>
-                            <?php while ($article = $requete->fetch(PDO::FETCH_ASSOC)) { ?><!-- ouverture de la boucle WHILE -->
+                            <?php while ($ligne = $requete->fetch(PDO::FETCH_ASSOC)) { ?><!-- ouverture de la boucle WHILE -->
                                 <tr>
                                     <td><?php echo $ligne['id']; ?>
                                     </td>
