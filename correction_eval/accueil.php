@@ -56,8 +56,7 @@ $requete = $pdoAppart->query(" SELECT * FROM advert ORDER BY id DESC LIMIT 0,15 
                             </div>
                         </div>
                     </div>
-
-                <?php } else { ?>
+                    <?php } else { ?>
 
                     <div class="col-12 col-md-6 col-lg-3 mb-5">
                         <div class="card text-center shadow position-relative">
