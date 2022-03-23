@@ -25,9 +25,17 @@ if(isset($_GET['action']) && $_GET['action'] == 'deconnexion'){ /* si ds l'URL j
   <title>Blog - Profil personnel</title>
   <!-- BOOTSWATCH CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.3/lux/bootstrap.min.css" integrity="sha512-B5sIrmt97CGoPUHgazLWO0fKVVbtXgGIOayWsbp9Z5aq4DJVATpOftE/sTTL27cu+QOqpI/jpt6tldZ4SwFDZw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
 
 <body>
+
+<?php if(!estConnecte()) {
+  echo  
+  '<div class=\"alert alert-success\">
+  Vous n\'êtes pas connecté, merci de bien vouloir vous rendre sur la page <a href=\"connection.php\"</a> pour accéder à votre profil. </div>';
+} else{ ?>
 
   <div class="p-5 bg-primary">
       <div class="container">
@@ -69,13 +77,14 @@ if(isset($_GET['action']) && $_GET['action'] == 'deconnexion'){ /* si ds l'URL j
 
                 </div>
                 <div class="card-footer text-muted">
-                 <a href="connexion.php?action=deconnexion" class="btn btn-sm  btn-outline-primary">Se déconnecter</a>
+                 <a href="profil.php?action=deconnexion" class="btn btn-sm  btn-outline-primary">Se déconnecter</a>
                 </div>
               </div>
 
           </div>
       </div>
   </div>
+  <?php }?>
 
 
   <!-- BOOTSWATCH JS -->
