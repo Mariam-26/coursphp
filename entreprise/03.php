@@ -1,91 +1,73 @@
 <?php
-// 1-Méthodes de debug
-require('inc/functions.php');
+// Je définie le titre
+$titre = "Mise à jour d'un employé";
 
-// 2- Connexion BDD
-$pdoEntreprise = new PDO(
-    'mysql:host=localhost;dbname=entreprise',
-    'root',
-    '',
-    array(
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING, // afficher les erreurs SQL dans le navigateur
-        PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8', // charset des échanges avec la BDD
-    )
-);
+
+
+// CONNECTION A LA BASE DE DONNEES
+require_once '../entreprise/connect.php';
+
 
 // 3- Réception des infos d'un employé avec $_GET
 if (isset($_GET['id_employes'])) {
-    $resultat = $pdoEntreprise->prepare(" SELECT * FROM employes WHERE id_employes = :id_employes ");
-    $resultat->execute(array(
-        ':id_employes' => $_GET['id_employes'] // on associe le marqueur vide à l'id_employes
-    ));
-    if ($resultat->rowCount() == 0) {
-        header('location:02-entreprise.php');
-        exit();
-    }
-    $fiche = $resultat->fetch(PDO::FETCH_ASSOC); /* Sr notre variable résultat qui contient notre requête (ici  on sélection ttes ls infos d'un employé donné)  on demande fetch (va chercher) et on lui indique qu'il ft recupérer les infos ds la BDD FETCH_ASSOC permet de renvoyer ls résultats d'une rangée comme venant d'un tableau*/
+  $resultat = $pdoEntreprise->prepare(" SELECT * FROM employes WHERE id_employes = :id_employes ");
+  $resultat->execute(array(
+      ':id_employes' => $_GET['id_employes'] // on associe le marqueur vide à l'id_employes
+  ));
+  if ($resultat->rowCount() == 0) {
+      header('location:02-entreprise.php');
+      exit();
+  }
+  $fiche = $resultat->fetch(PDO::FETCH_ASSOC); /* Sr notre variable résultat qui contient notre requête (ici  on sélection ttes ls infos d'un employé donné)  on demande fetch (va chercher) et on lui indique qu'il ft recupérer les infos ds la BDD FETCH_ASSOC permet de renvoyer ls résultats d'une rangée comme venant d'un tableau*/
 } else {/* si la personne vient sur la page juste 03-entreprise.ph on la renvoie vers la page °2-entreprise.php //Doit être à l'exterieur du if principal car on demande de sortir di on ne récupère ps l'id_employes ds l'URL  */
-    header('location:02-entreprise.php');
-    exit();
+  header('location:02-entreprise.php');
+  exit();
 }
 
 //4- MàJ d'un employé
 if (!empty($_POST)) {
-    $_POST['prenom'] = htmlspecialchars($_POST['prenom']);
-    $_POST['nom'] = htmlspecialchars($_POST['nom']);
-    $_POST['sexe'] = htmlspecialchars($_POST['sexe']);
-    $_POST['service'] = htmlspecialchars($_POST['service']);
-    $_POST['date_embauche'] = htmlspecialchars($_POST['date_embauche']);
-    $_POST['salaire'] = htmlspecialchars($_POST['salaire']);
+  $_POST['prenom'] = htmlspecialchars($_POST['prenom']);
+  $_POST['nom'] = htmlspecialchars($_POST['nom']);
+  $_POST['sexe'] = htmlspecialchars($_POST['sexe']);
+  $_POST['service'] = htmlspecialchars($_POST['service']);
+  $_POST['date_embauche'] = htmlspecialchars($_POST['date_embauche']);
+  $_POST['salaire'] = htmlspecialchars($_POST['salaire']);
 
-    $resultat = $pdoEntreprise->prepare(" UPDATE employes SET prenom = :prenom, nom = :nom, sexe = :sexe, service = :service, date_embauche = :date_embauche, salaire = :salaire WHERE id_employes = :id_employes ");
-    /* On utilise prepare lorsque l'on prépare une requête avec des marqueurs (:nomduchamp) */
+  $resultat = $pdoEntreprise->prepare(" UPDATE employes SET prenom = :prenom, nom = :nom, sexe = :sexe, service = :service, date_embauche = :date_embauche, salaire = :salaire WHERE id_employes = :id_employes ");
+  /* On utilise prepare lorsque l'on prépare une requête avec des marqueurs (:nomduchamp) */
 
-    $resultat->execute(array(
-        ':prenom' => $_POST['prenom'],
-        ':nom' => $_POST['nom'],
-        ':sexe' => $_POST['sexe'],
-        ':service' => $_POST['service'],
-        ':date_embauche' => $_POST['date_embauche'],
-        ':salaire' => $_POST['salaire'],
-        ':id_employes' => $_GET['id_employes'],
-    ));
-    /* Je fais ensuite correspondre les marqueurs jusqu'à là vides aux donnéees que je récupère de mon formulaire */
 
-    header('location:02-entreprise.php');
-    exit();
+  $resultat->execute(array(
+    ':prenom' => $_POST['prenom'],
+    ':nom' => $_POST['nom'],
+    ':sexe' => $_POST['sexe'],
+    ':service' => $_POST['service'],
+    ':date_embauche' => $_POST['date_embauche'],
+    ':salaire' => $_POST['salaire'],
+    ':id_employes' => $_GET['id_employes'],
+  ));
+  /* Je fais ensuite correspondre les marqueurs jusqu'à là vides aux donnéees que je récupère de mon formulaire */
+
+  header('location:02-entreprise.php');
+  exit();
 }
 
 ?>
-<!doctype html>
-<html lang="fr">
 
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php //  INCLUSION DU HEADER 
+require_once '../entreprise/includes/header_entreprise.php'; 
+ ?>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <title>Back Office Entreprise - MàJ d'un employé</title>
-
-</head>
-
-<body>
-   
-    <div class="p-5 bg-light">
-        <div class="container">
-            <h1 class="display-3">Back Office Entreprise</h1>
-            <p class="lead">Mise à jour de l'employé #<?php echo $fiche['id_employes'] ?></p>
+<!-- MAIN -->
+<main class="container">
+  <div class="row col-12">
+      <div class="col-lg-12 col-md-12 col-sm-12">
+      <h1 class="p-5 text-center">Mise à jour de l'employé #<h1> 
+      <p class="lead">Mise à jour de l'employé #<?php echo $fiche['id_employes'] ?></p>
             <p class="lead">
                 <a class="btn btn-primary btn-lg" href="02-entreprise.php" role="button">Voir tous les employés</a>
-            </p>
-        </div>
-    </div>
-    <main class="container">
-        <section class="row my-5">
-
+            </p>  
+            
             <div class="col-md-4 alert-primary rounded p-5">
                 <!-- J'affiche toutes les informations relatives à l'employé sélectionné -->
 
@@ -93,8 +75,10 @@ if (!empty($_POST)) {
                     <?php if ($fiche['sexe'] == 'f') {
                         echo "e";
                     } ?></h2>
-
-                <div class="card">
+      
+      <!-- CARD  -->
+      <div class="col-12 col-md-6">   
+      <div class="card">
                     <div class="card-header">
                         <h4 class="text-center"><?php echo $fiche['prenom'] . " " . $fiche['nom']; ?></h4>
                     </div>
@@ -172,15 +156,13 @@ if (!empty($_POST)) {
                     <button type="submit" class="btn btn-warning">Mettre à jour</button>
                 </form>
 
-            </div>
-            <!-- fin col -->
-        </section>
-        <!-- fin row -->
+           
+          ?>        
         </div>
-        <!-- fin container  -->
+        </div>
+         
     </main>
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+    <!-- FIN MAIN -->
 
-</html>
+    <!-- INCLUSION DU FOOTER -->  
+    <?php require_once '../entreprise/includes/footer_entreprise.php'; ?> 

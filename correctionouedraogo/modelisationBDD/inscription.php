@@ -1,5 +1,5 @@
 <?php 
-// 
+ 
 require_once 'connect.php';
 // 2-Inscription sur la BDD
 if(!empty($_POST)){

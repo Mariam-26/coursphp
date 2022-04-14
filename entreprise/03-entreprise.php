@@ -2,23 +2,22 @@
 // Je définie le titre
 $titre = "mariam Ouédraogo";
 
-//  INCLUSION DU HEADER 
-require_once '../entreprise/includes/header_entreprise.php'; 
+ 
 
 // CONNECTION A LA BASE DE DONNEES
 require_once '../entreprise/connect.php';
 ?>
 
 
-
+<?php //  INCLUSION DU HEADER 
+require_once '../entreprise/includes/header_entreprise.php';
+?>
 <!-- MAIN -->
 <main class="container">
   <div class="row col-12">
       <div class="col-lg-12 col-md-12 col-sm-12">
       <h1 class="p-5 text-center">mariam Ouédraogo<h1>         
-      <div class="row">
-        
-   
+      <div class="row">       
       </div>
 
       <!-- CARD  -->
