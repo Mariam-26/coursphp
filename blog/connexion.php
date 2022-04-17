@@ -71,7 +71,7 @@ if(!empty($_POST)){
                         <input type="password" name="mdp" id="mdp" class="form-control">
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Se connecter</button>
+                    <button type="submit" class="btn btn-primary">SE CONNECTER</button>
 
                 </form>
 
