@@ -1,6 +1,26 @@
 <?php 
+// Je définie le titre
+$titre = "Blog - Inscription";
+
+// INCLUSION DU HEADER
+require_once '../modelisationBDD/includes/header_blog.php';
+
+// ACTIVER ARTICLE DANS LA BAR DE NAVIGATION
+$nav = "inscription";
+
+// 1- Méthodes de debug
+require('../modelisationBDD/inc/functions.inc.php');
+
+// CONNECTION A LA BASE DE DONNEES
+require_once '../modelisationBDD/connect.php';
+
+
+
  
-require_once 'connect.php';
+// require_once 'connect.php';
+
+
+
 // 2-Inscription sur la BDD
 if(!empty($_POST)){
   /* Les if qui suivent vont permettre de vérifier si les valeurs passées dans $_POST correspondent bien à ce qui est attendu en BDD */
@@ -94,7 +114,7 @@ if(!empty($_POST)){
 
   <div class="p-5 bg-primary">
       <div class="container">
-          <h1 class="display-3 text-white">Inscription Blog</h1>
+          <h1 class="display-3 text-white" id="inscription">Inscription Blog</h1>
           <p class="lead text-white">Inscrivez-vous sur notre site !</p>
       </div>
   </div>
@@ -179,9 +199,5 @@ if(!empty($_POST)){
       </div>
   </div>
 
-
-  <!-- BOOTSWATCH JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
-
-</html>
+  <!-- REQUIERE DU FOOTER -->
+  <?php require_once '../modelisationBDD/includes/footer_blog.php'; ?>
