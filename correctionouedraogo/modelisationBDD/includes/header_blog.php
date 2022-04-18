@@ -41,6 +41,12 @@
               <li class="nav-item <?php if ($nav === 'article'): ?>active<?php endif; ?>">
                 <a class="nav-link" href="article.php">Article</a>
               </li>
+              <li class="nav-item <?php if ($nav === 'inscription'): ?>active<?php endif; ?>">
+                <a class="nav-link" href="inscription.php">Inscription</a>
+              </li>
+              <li class="nav-item <?php if ($nav === 'connexion'): ?>active<?php endif; ?>">
+                <a class="nav-link" href="connexion.php">Connection</a>
+              </li>
               <li class="nav-item <?php if ($nav === 'contact'): ?>active<?php endif; ?>">
                 <a class="nav-link" href="#contact">Contact</a>
               </li>
