@@ -91,7 +91,8 @@ if (isset($_GET['action']) && $_GET['action'] == 'suppression' && isset($_GET['i
                     <td><?php echo $article['id']; ?></td>
                     <td><img src="<?php echo $article['image']; ?>" alt="IMAGE" class="img-fluid"></td>
                     <td><?php echo $article['titre']; ?></td>
-                    <td><?php echo $article['contenu']; ?></td>
+                   
+                    <td><?php echo substr($article['contenu'], 0,70); ?><a href="article1.php?id=<?php echo $article['id']; ?>" class="btn btn-outline-primary btn-sm"> [VOIR LA SUITE]</a></td>
                     <td><?php echo $article['auteur']; ?></td>
                     <td><?php echo date('d-m-Y', strtotime($article['date_parution'])); ?></td>
                     <td>
