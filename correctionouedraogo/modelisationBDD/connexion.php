@@ -1,6 +1,24 @@
 <?php
-// 
-require_once 'connect.php';
+// Je définie le titre
+$titre = "Blog - Connexion";
+
+// INCLUSION DU HEADER
+require_once '../modelisationBDD/includes/header_blog.php';
+
+// ACTIVER ACCUEIL DANS LA BAR DE NAVIGATION
+$nav = "connexion";
+
+// 1- Méthodes de debug
+require('../modelisationBDD/inc/functions.inc.php');
+
+// CONNECTION A LA BASE DE DONNEES
+require_once '../modelisationBDD/connect.php';
+
+
+
+
+
+// require_once 'connect.php';
 
 // 2- Traitement du formulaire
 
@@ -51,7 +69,7 @@ if (!empty($_POST)) {
 
     <div class="p-5 bg-primary">
         <div class="container">
-            <h1 class="display-3 text-white">Connexion Blog</h1>
+            <h1 class="display-3 text-white" id="connexion">Connexion Blog</h1>
             <p class="lead text-white">Connectez-vous à votre compte</p>
         </div>
     </div>
@@ -72,7 +90,7 @@ if (!empty($_POST)) {
                         <input type="password" name="mdp" id="mdp" class="form-control">
                     </div>
 
-                    <button type="submit" class="btn btn-primary">S'inscrire</button>
+                    <button type="submit" class="btn btn-primary">SE CONNECTER</button>
 
                 </form>
 
@@ -80,8 +98,5 @@ if (!empty($_POST)) {
         </div>
     </div>
 
-    <!-- BOOTSWATCH JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-</body>
-
-</html>
+    <!-- REQUIERE DU FOOTER -->
+    <?php require_once '../modelisationBDD/includes/footer_blog.php'; ?>
