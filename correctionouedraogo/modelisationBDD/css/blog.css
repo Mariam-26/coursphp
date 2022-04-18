@@ -17,23 +17,26 @@ header {
     height: 25vh;
 }
 
-nav ul a {
-    font-size: 1.1rem;
+nav ul li a {
+    font-size: .1rem !important;
     margin-right: 15px;
-    color: rgba(255, 255, 255, 0.7) !important;
+    color: red !important;
+    /* color: rgba(255, 255, 255, 0.7) !important; */
     text-transform: uppercase;
 }
 
-nav ul a:hover {
+
+/* nav ul a:hover {
     color: cyan !important;
-}
+} */
 
 .blog {
     text-transform: uppercase !important;
     font-size: 2rem !important;
     font-weight: bold;
     margin-right: 320px !important;
-    color: rgba(255, 255, 255, 0.7) !important;
+    /* color: rgba(255, 255, 255, 0.7) !important; */
+    color: red !important;
 }
 
 .blog:hover {
